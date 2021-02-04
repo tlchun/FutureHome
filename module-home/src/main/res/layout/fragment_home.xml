@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+
+    <data>
+        <variable name="viewModel" type="com.goldze.home.ui.viewmodel.HomeViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:itemview="http://schemas.android.com/apk/res-auto"
+        xmlns:funitemview="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/layout_background"
+        android:orientation="vertical">
+
+        <ImageView
+            android:background="@mipmap/banner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.goldze.base.widget.ItemView
+            android:background="@color/white"
+            itemview:item_right_visible="true"
+            itemview:item_left_visible="true"
+            itemview:item_right_text="2021-02-03"
+            itemview:item_left_img_res="@mipmap/notice_img"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+         <LinearLayout
+             android:layout_marginTop="10dp"
+             android:background="@color/white"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+             <com.goldze.base.widget.FunItemView
+                 android:layout_width="0dp"
+                 android:layout_weight="1"
+                 funitemview:item_text="门禁"
+                 funitemview:item_img_res="@mipmap/icon_page_door"
+                 android:layout_height="wrap_content"/>
+
+             <com.goldze.base.widget.FunItemView
+                 funitemview:item_text="联系物业"
+                 funitemview:item_img_res="@mipmap/icon_page_wuye"
+                 android:layout_width="0dp"
+                 android:layout_weight="1"
+                 android:layout_height="wrap_content"/>
+
+             <com.goldze.base.widget.FunItemView
+                 funitemview:item_text="钥匙分享"
+                 funitemview:item_img_res="@mipmap/icon_page_pwd"
+                 android:layout_width="0dp"
+                 android:layout_weight="1"
+                 android:layout_height="wrap_content"/>
+
+             <com.goldze.base.widget.FunItemView
+                 funitemview:item_text="房产"
+                 funitemview:item_img_res="@mipmap/icon_page_house"
+                 android:layout_width="0dp"
+                 android:layout_weight="1"
+                 android:layout_height="wrap_content"/>
+         </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.goldze.base.widget.FunItemView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                funitemview:item_text="缴费"
+                funitemview:item_img_res="@mipmap/icon_page_pay"
+                android:layout_height="wrap_content"/>
+
+            <com.goldze.base.widget.FunItemView
+                funitemview:item_text="维修"
+                funitemview:item_img_res="@mipmap/icon_page_repair"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+            <com.goldze.base.widget.FunItemView
+                funitemview:item_text="停车"
+                funitemview:item_img_res="@mipmap/icon_page_park"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+            <com.goldze.base.widget.FunItemView
+                funitemview:item_text="户户通"
+                funitemview:item_img_res="@mipmap/iv_h2h"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

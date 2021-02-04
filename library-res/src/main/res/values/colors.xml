@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="textColor">#333333</color>
+    <color name="textColorVice">#6C6C6C</color>
+    <color name="textColorRed">#D51717</color>
+    <color name="textColorHint">#999999</color>
+    <color name="appColor">#FF2041</color>
+    <color name="appBackColor">#F4F3F3</color>
+    <color name="viewLineColor">#E0E0E0</color>
+
+
+    <color name="item_color_pressed">#eeeeee</color>
+    <color name="item_color_normal">#ffffff</color>
+    <color name="transparent">#ffffff</color>
+
+    <color name="blue_text_color">#4c91fc</color>
+    <color name="blue_text_color_press">#66347FF0</color>
+    <color name="layout_background">#F6F6F6</color>
+
+</resources>

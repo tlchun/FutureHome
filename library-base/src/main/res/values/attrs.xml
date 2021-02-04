@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ItemView">
+        <attr name="item_left_img_res" format="integer"/>
+        <attr name="android:text"/>
+        <attr name="item_right_text" format="string"/>
+        <attr name="item_right_img_res" format="integer"/>
+        <attr name="item_left_text_color" format="integer"/>
+        <attr name="item_left_text_color_string" format="string"/>
+        <attr name="item_left_visible" format="boolean"/>
+        <attr name="item_right_visible" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="FunItemView">
+        <attr name="item_text" format="string"/>
+        <attr name="item_img_res" format="integer"/>
+    </declare-styleable>
+
+</resources>

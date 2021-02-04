@@ -1,0 +1,2 @@
+include ':app', ':library-base', ':module-main',':module-sign', ':module-home', ':module-user', ':library-res', ':module-work', ':module-msg'
+

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    android:background="@android:color/transparent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rl_left"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/btn_selector"
+        android:clickable="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/title_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/arrow_back"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/blue_text_color"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/title_textSize" />
+
+    <RelativeLayout
+        android:id="@+id/rl_search"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/btn_selector"
+        android:gravity="right|center_vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/title_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/search_white"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_right"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/btn_selector"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/add"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+
+</LinearLayout>
