@@ -1,6 +1,8 @@
 package com.goldze.main.ui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +17,9 @@ import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.goldze.base.IGetMessageCallBack;
+import com.goldze.base.MQTTService;
+import com.goldze.base.MyServiceConnection;
 import com.goldze.base.router.RouterActivityPath;
 import com.goldze.base.router.RouterFragmentPath;
 import com.goldze.main.R;
@@ -32,8 +37,11 @@ import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 
 
 @Route(path = RouterActivityPath.Main.PAGER_MAIN)
-public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> {
+public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> implements IGetMessageCallBack {
     private List<Fragment> mFragments;
+
+    private MyServiceConnection serviceConnection;
+    private MQTTService mqttService;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -53,6 +61,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         initFragment();
         //初始化底部Button
         initBottomTab();
+
+        serviceConnection = new MyServiceConnection();
+        serviceConnection.setIGetMessageCallBack(MainActivity.this);
+        Intent intent = new Intent(this, MQTTService.class);
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
     }
 
@@ -95,6 +108,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
                     transaction.replace(R.id.frameLayout, currentFragment);
                     transaction.commitAllowingStateLoss();
                 }
+                MQTTService.publish("测试一下子");
             }
 
             @Override
@@ -127,5 +141,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
                 window.setAttributes(attributes);
             }
         }
+    }
+
+    @Override
+    public void setMessage(String message) {
+        mqttService = serviceConnection.getMqttService();
+        mqttService.toCreateNotification(message);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unbindService(serviceConnection);
+        super.onDestroy();
     }
 }

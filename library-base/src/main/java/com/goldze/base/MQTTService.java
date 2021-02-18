@@ -1,4 +1,4 @@
-package com.goldze.component;
+package com.goldze.base;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -30,7 +30,7 @@ public class MQTTService extends Service {
 
     private String host = "tcp://8.134.9.85:1883";
     private String userName = "device_1";
-    private String passWord = "device_1";
+    private String passWord = "public";
     private static String myTopic = "/device/clientid";      //要订阅的主题
     private String clientId = "device_1";//客户端标识
     private IGetMessageCallBack IGetMessageCallBack;
@@ -144,6 +144,7 @@ public class MQTTService extends Service {
         @Override
         public void onFailure(IMqttToken arg0, Throwable arg1) {
             arg1.printStackTrace();
+            Log.i(TAG, "连接失败 ");
             // 连接失败，重连
         }
     };

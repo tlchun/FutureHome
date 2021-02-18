@@ -1,4 +1,4 @@
-package com.goldze.component;
+package com.goldze.base;
 
 import android.content.ComponentName;
 import android.content.ServiceConnection;
