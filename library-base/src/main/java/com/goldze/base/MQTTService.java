@@ -31,8 +31,8 @@ public class MQTTService extends Service {
     private String host = "tcp://8.134.9.85:1883";
     private String userName = "device_1";
     private String passWord = "public";
-    private static String myTopic = "/device/clientid";      //要订阅的主题
-    private String clientId = "device_1";//客户端标识
+    private static String clientId = "device_1";//客户端标识
+    private static String myTopic = "/device/"+clientId;      //要订阅的主题
     private IGetMessageCallBack IGetMessageCallBack;
 
 

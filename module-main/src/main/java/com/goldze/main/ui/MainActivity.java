@@ -11,12 +11,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.goldze.base.ApiResult;
 import com.goldze.base.IGetMessageCallBack;
 import com.goldze.base.MQTTService;
 import com.goldze.base.MyServiceConnection;
@@ -25,8 +27,11 @@ import com.goldze.base.router.RouterFragmentPath;
 import com.goldze.main.R;
 import com.goldze.main.BR;
 import com.goldze.main.databinding.ActivityMainBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.gyf.immersionbar.ImmersionBar;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,10 +97,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
 
     private void initBottomTab() {
         NavigationController navigationController = binding.pagerBottomTab.material()
-                .addItem(R.mipmap.act_host1, "物业",ContextCompat.getColor(this, R.color.blue_text_color))
-                .addItem(R.mipmap.act_tool2, "智能",ContextCompat.getColor(this, R.color.blue_text_color))
-                .addItem(R.mipmap.act_sq2, "社区",ContextCompat.getColor(this, R.color.blue_text_color))
-                .addItem(R.mipmap.act_my1, "我的",ContextCompat.getColor(this, R.color.blue_text_color))
+                .addItem(R.mipmap.act_host1, "物业", ContextCompat.getColor(this, R.color.blue_text_color))
+                .addItem(R.mipmap.act_tool2, "智能", ContextCompat.getColor(this, R.color.blue_text_color))
+                .addItem(R.mipmap.act_sq2, "社区", ContextCompat.getColor(this, R.color.blue_text_color))
+                .addItem(R.mipmap.act_my1, "我的", ContextCompat.getColor(this, R.color.blue_text_color))
                 .setDefaultColor(ContextCompat.getColor(this, R.color.textColorVice))
                 .build();
         //底部按钮的点击事件监听
@@ -145,8 +150,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
 
     @Override
     public void setMessage(String message) {
-        mqttService = serviceConnection.getMqttService();
-        mqttService.toCreateNotification(message);
+        Log.d("MQTT msg:", message);
+        message = "{ 	\"code\": 0, 	\"data\": { 		\"key1\": 123, 		\"key2\": \"world\" 	}, 	\"msg\": \"hello\" }";
+        Type type = new TypeToken<ApiResult<DemoModel>>() {
+        }.getType();
+        ApiResult<DemoModel> apiResult = new Gson().fromJson(message, type);
+        DemoModel demoModel = apiResult.getData();
+        Log.d("MQTT msg1:", demoModel.getKey1());
+        Log.d("MQTT msg2:", demoModel.getKey2());
     }
 
     @Override
