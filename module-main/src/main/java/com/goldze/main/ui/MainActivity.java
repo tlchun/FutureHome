@@ -29,7 +29,6 @@ import com.goldze.main.BR;
 import com.goldze.main.databinding.ActivityMainBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.gyf.immersionbar.ImmersionBar;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -46,7 +45,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     private List<Fragment> mFragments;
 
     private MyServiceConnection serviceConnection;
-    private MQTTService mqttService;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
