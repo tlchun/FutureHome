@@ -3,6 +3,7 @@ package com.goldze.component;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.goldze.base.config.ModuleLifecycleConfig;
 import com.goldze.main.ui.MainActivity;
+import com.goldze.user.LoginSDKContext;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.converter.SerializableDiskConverter;
 import com.zhouyou.http.cache.model.CacheMode;
@@ -40,6 +41,8 @@ public class AppApplication extends BaseApplication {
                 //.eventListener(new YourCustomEventListener()) //崩溃后的错误监听
                 .apply();
 
+
+        LoginSDKContext.getInstance().init(this);
 
         Fresco.initialize(this);
 

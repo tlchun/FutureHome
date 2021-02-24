@@ -15,4 +15,6 @@ dependencies {
     api project(':library-base')
     //组件中依赖阿里路由编译框架
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    compile ('com.yalantis:ucrop:2.2.0')
 }

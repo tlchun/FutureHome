@@ -1,7 +1,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.goldze.user">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.goldze.component.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/het_file_paths" />
+        </provider>
+
         <activity android:name=".ui.activity.UserDetailActivity"></activity>
         <activity android:name=".ui.activity.DisturbActivity"></activity>
         <activity android:name=".ui.activity.FaceActivity"></activity>
@@ -10,5 +25,9 @@
         <activity android:name=".ui.activity.SettingActivity"></activity>
         <activity android:name=".ui.activity.ShareActivity"></activity>
         <activity android:name=".ui.activity.UpdateInputActivity"></activity>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait" />
     </application>
+
 </manifest>
