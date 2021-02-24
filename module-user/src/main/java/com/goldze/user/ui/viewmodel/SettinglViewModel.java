@@ -4,10 +4,12 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import com.goldze.user.ui.activity.DisturbActivity;
 import com.goldze.user.ui.activity.FaceActivity;
 import com.goldze.user.ui.activity.FeedBackActivity;
 import com.goldze.user.ui.activity.PersonActivity;
 import com.goldze.user.ui.activity.SettingActivity;
+import com.goldze.user.ui.activity.ShareActivity;
 
 import me.goldze.mvvmhabit.base.BaseViewModel;
 
@@ -23,10 +25,11 @@ public class SettinglViewModel extends BaseViewModel {
         super.onCreate();
     }
 
-    private void getAppVersion(){
+    private void getAppVersion() {
 
     }
-    private void getCacheSize(){
+
+    private void getCacheSize() {
 
     }
 
@@ -45,13 +48,13 @@ public class SettinglViewModel extends BaseViewModel {
     public View.OnClickListener shareOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(FeedBackActivity.class);
+            startActivity(ShareActivity.class);
         }
     };
     public View.OnClickListener disturbOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(FeedBackActivity.class);
+            startActivity(DisturbActivity.class);
         }
     };
     public View.OnClickListener feedbackOnClick = new View.OnClickListener() {

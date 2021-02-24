@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:itemview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ResourceName">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.goldze.user.ui.viewmodel.SettinglViewModel" />
@@ -20,86 +20,89 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:background="@mipmap/icon_card_bg"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="200dp"
+            android:background="@mipmap/icon_card_bg">
 
-            <ImageView
-                android:layout_marginTop="80dp"
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_pic"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_centerInParent="true"
-                android:background="@mipmap/head_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                fresco:actualImageScaleType="focusCrop"
+                fresco:placeholderImage="@mipmap/head_img"
+                fresco:placeholderImageScaleType="fitCenter"
+                fresco:roundAsCircle="true" />
+
         </RelativeLayout>
 
-
         <com.goldze.base.widget.ItemView
-            android:onClick="@{viewModel.faceOnClick}"
-            itemview:item_left_visible="true"
             android:id="@+id/itemview_user_face"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
             android:layout_marginTop="20dp"
             android:background="@drawable/item_selector"
             android:clickable="true"
+            android:onClick="@{viewModel.faceOnClick}"
             android:text="人脸录入"
             itemview:item_left_img_res="@mipmap/icon_face"
-            itemview:item_right_img_res="@mipmap/arrow_right"/>
+            itemview:item_left_visible="true"
+            itemview:item_right_img_res="@mipmap/arrow_right" />
 
         <com.goldze.base.widget.ItemView
-            android:onClick="@{viewModel.personOnClick}"
-            itemview:item_left_visible="true"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
             android:background="@drawable/item_selector"
             android:clickable="true"
+            android:onClick="@{viewModel.personOnClick}"
             android:text="个人资料"
             itemview:item_left_img_res="@mipmap/my_information"
-            itemview:item_right_img_res="@mipmap/arrow_right"/>
+            itemview:item_left_visible="true"
+            itemview:item_right_img_res="@mipmap/arrow_right" />
 
         <com.goldze.base.widget.ItemView
-            android:onClick="@{viewModel.shareOnClick}"
-            itemview:item_left_visible="true"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
             android:background="@drawable/item_selector"
             android:clickable="true"
+            android:onClick="@{viewModel.shareOnClick}"
             android:text="分享好友"
             itemview:item_left_img_res="@mipmap/my_share"
-            itemview:item_right_img_res="@mipmap/arrow_right"/>
+            itemview:item_left_visible="true"
+            itemview:item_right_img_res="@mipmap/arrow_right" />
 
         <com.goldze.base.widget.ItemView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height"
+            android:background="@drawable/item_selector"
+            android:clickable="true"
             android:onClick="@{viewModel.disturbOnClick}"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/item_height"
-            android:background="@drawable/item_selector"
-            android:clickable="true"
             android:text="面打扰"
-            itemview:item_left_visible="true"
             itemview:item_left_img_res="@mipmap/setting_disturb"
-            itemview:item_right_img_res="@mipmap/arrow_right"/>
+            itemview:item_left_visible="true"
+            itemview:item_right_img_res="@mipmap/arrow_right" />
 
         <com.goldze.base.widget.ItemView
-            android:onClick="@{viewModel.feedbackOnClick}"
-            itemview:item_left_visible="true"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
             android:background="@drawable/item_selector"
             android:clickable="true"
+            android:onClick="@{viewModel.feedbackOnClick}"
             android:text="意见反馈"
             itemview:item_left_img_res="@mipmap/call_back"
-            itemview:item_right_img_res="@mipmap/arrow_right"/>
+            itemview:item_left_visible="true"
+            itemview:item_right_img_res="@mipmap/arrow_right" />
 
         <com.goldze.base.widget.ItemView
-            android:onClick="@{viewModel.settingOnClick}"
-            itemview:item_left_visible="true"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
             android:background="@drawable/item_selector"
             android:clickable="true"
+            android:onClick="@{viewModel.settingOnClick}"
             android:text="设置"
             itemview:item_left_img_res="@mipmap/my_setting"
-            itemview:item_right_img_res="@mipmap/arrow_right"/>
+            itemview:item_left_visible="true"
+            itemview:item_right_img_res="@mipmap/arrow_right" />
 
     </LinearLayout>
 </layout>

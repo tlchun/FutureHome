@@ -5,8 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.goldze.base.global.SPKeyGlobal;
+import com.goldze.base.router.RouterActivityPath;
 import com.goldze.main.R;
+
+import me.goldze.mvvmhabit.utils.SPUtils;
 
 
 public class SplashActivity extends Activity {
@@ -27,7 +34,17 @@ public class SplashActivity extends Activity {
      * 进入主页面
      */
     private void inMain() {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+        initData();
+    }
+
+    public void initData() {
+        String userInfo = SPUtils.getInstance().getString(SPKeyGlobal.USER_INFO);
+        if (!TextUtils.isEmpty(userInfo)) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        } else {
+            ARouter.getInstance().build(RouterActivityPath.Sign.PAGER_LOGIN).navigation();
+            finish();
+        }
     }
 }

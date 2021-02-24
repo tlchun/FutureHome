@@ -43,4 +43,6 @@ dependencies {
     compile 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
+    compile 'com.zhouyou:rxeasyhttp:2.1.5'
+    compile 'com.facebook.fresco:fresco:0.12.0'
 }

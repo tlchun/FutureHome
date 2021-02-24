@@ -8,8 +8,14 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.goldze.base.contract._Login;
 import com.goldze.base.global.SPKeyGlobal;
+import com.goldze.base.router.RouterActivityPath;
+import com.goldze.sign.model.LoginModel;
+import com.zhouyou.http.EasyHttp;
+import com.zhouyou.http.callback.SimpleCallBack;
+import com.zhouyou.http.exception.ApiException;
 
 import java.util.concurrent.TimeUnit;
 
@@ -95,24 +101,27 @@ public class LoginViewModel extends BaseViewModel {
             ToastUtils.showShort("请输入密码！");
             return;
         }
-
-        //RaJava模拟一个延迟操作
-        Observable.just("")
-                .delay(3, TimeUnit.SECONDS) //延迟3秒
-                .compose(RxUtils.bindToLifecycle(getLifecycleProvider()))//界面关闭自动取消
-                .compose(RxUtils.schedulersTransformer()) //线程调度
-                .doOnSubscribe(new Consumer<Disposable>() {
+        EasyHttp.get("/app/account/login")
+                .readTimeOut(30 * 1000)//局部定义读超时
+                .writeTimeOut(30 * 1000)
+                .connectTimeout(30 * 1000)
+                .params("username", userName.get())
+                .params("password", password.get())
+                .timeStamp(true)
+                .execute(new SimpleCallBack<LoginModel>() {
                     @Override
-                    public void accept(Disposable disposable) throws Exception {
-                        showDialog();
+                    public void onError(ApiException e) {
+                        ToastUtils.showShort("登录失败");
                     }
-                })
-                .subscribe(new Consumer() {
+
                     @Override
-                    public void accept(Object o) throws Exception {
-                        dismissDialog();
+                    public void onSuccess(LoginModel response) {
+                        ToastUtils.showShort("登录成功");
                         //保存用户信息
                         SPUtils.getInstance().put(SPKeyGlobal.USER_INFO, userName.get());
+                        SPUtils.getInstance().put(SPKeyGlobal.USER_PIC, response.getAccount().getHeadImgUrl());
+                        SPUtils.getInstance().put(SPKeyGlobal.USER_TOKEN, response.getToken());
+                        ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
                         _Login _login = new _Login();
                         //采用ARouter+RxBus实现组件间通信
                         RxBus.getDefault().post(_login);

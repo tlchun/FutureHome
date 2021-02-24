@@ -3,5 +3,12 @@
 
     <application>
         <activity android:name=".ui.activity.UserDetailActivity"></activity>
+        <activity android:name=".ui.activity.DisturbActivity"></activity>
+        <activity android:name=".ui.activity.FaceActivity"></activity>
+        <activity android:name=".ui.activity.FeedBackActivity"></activity>
+        <activity android:name=".ui.activity.PersonActivity"></activity>
+        <activity android:name=".ui.activity.SettingActivity"></activity>
+        <activity android:name=".ui.activity.ShareActivity"></activity>
+        <activity android:name=".ui.activity.UpdateInputActivity"></activity>
     </application>
 </manifest>
