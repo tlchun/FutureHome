@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.router.RouterActivityPath;
 import com.goldze.user.AvatarManager;
 import com.goldze.user.BR;
@@ -18,23 +21,30 @@ import com.goldze.user.databinding.ActivityUserDetailBinding;
 import com.goldze.user.ui.viewmodel.UserDetailViewModel;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yalantis.ucrop.UCrop;
+import com.zhouyou.http.EasyHttp;
+import com.zhouyou.http.callback.SimpleCallBack;
+import com.zhouyou.http.exception.ApiException;
 
 import java.io.File;
 
 import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.base.BaseActivity;
+import me.goldze.mvvmhabit.utils.SPUtils;
 import me.goldze.mvvmhabit.utils.ToastUtils;
 
 
 @Route(path = RouterActivityPath.User.PAGER_USERDETAIL)
 public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDetailViewModel> {
+    private String deviceMac;
 
     SimpleDraweeView iv_face;
+    EditText etUseId;
 
     @Override
     public void initParam() {
         //注入路由框架，拿到Autowired值，必须在initParam方法中注入，不然传到ViewModel里面的name为空
         ARouter.getInstance().inject(this);
+        deviceMac = getIntent().getStringExtra("deviceMac");
     }
 
     @Override
@@ -54,6 +64,14 @@ public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDe
             @Override
             public void onClick(View v) {
                 takePhoto();
+            }
+        });
+        etUseId = findViewById(R.id.et_userid);
+
+        findViewById(R.id.tv_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                faceInput();
             }
         });
     }
@@ -99,6 +117,32 @@ public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDe
         String path = AvatarManager.getInstance().getZoomImageSaveName();
         File file = new File(path);
         iv_face.setImageURI(Uri.parse("file://" + file));
+    }
+
+    private void faceInput() {
+        if (!TextUtils.isEmpty(etUseId.getText().toString().trim())) {
+            String url = "http://skintest.hetyj.com/10120/95665446f4554ce48c613ee791e465ba.png";
+            EasyHttp.get("/app/device/acs/faceInput")
+                    .headers("token", SPUtils.getInstance().getString(SPKeyGlobal.USER_TOKEN))
+                    .params("userId", etUseId.getText().toString().trim())
+                    .params("deviceMac", deviceMac)
+                    .params("faceImg", url)
+                    .timeStamp(true)
+                    .execute(new SimpleCallBack<String>() {
+                        @Override
+                        public void onError(ApiException e) {
+                            ToastUtils.showShort("失败");
+                        }
+
+                        @Override
+                        public void onSuccess(String response) {
+                            ToastUtils.showShort("上传成功");
+                            finish();
+                        }
+                    });
+        } else {
+            ToastUtils.showShort("请输入用户ID");
+        }
     }
 }
 

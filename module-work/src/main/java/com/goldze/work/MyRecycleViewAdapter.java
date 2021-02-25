@@ -1,24 +1,31 @@
 package com.goldze.work;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.goldze.work.ui.DeviceControlActivity;
+
 import java.util.List;
 
 public class MyRecycleViewAdapter extends RecyclerView.Adapter<MyRecycleViewAdapter.MyHolder> {
 
-    private List mList;//数据源
+    private List<DeviceModel> mList;//数据源
 
-    public MyRecycleViewAdapter(List list) {
+    private ViewGroup viewGroup;
+
+    public MyRecycleViewAdapter(List<DeviceModel> list) {
         mList = list;
     }
 
     //创建ViewHolder并返回，后续item布局里控件都是从ViewHolder中取出
     @Override
-    public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
+        viewGroup = parent;
         //将我们自定义的item布局R.layout.tv_content转换为View
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_device, parent, false);
@@ -30,8 +37,16 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter<MyRecycleViewAdap
 
     //通过方法提供的ViewHolder，将数据绑定到ViewHolder中
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
-        holder.textView.setText(mList.get(position).toString());
+    public void onBindViewHolder(MyHolder holder, @SuppressLint("RecyclerView") final int position) {
+        holder.textView.setText(mList.get(position).getDeviceMac());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(viewGroup.getContext(), DeviceControlActivity.class);
+                intent.putExtra("deviceMac", mList.get(position).getDeviceMac());
+                viewGroup.getContext().startActivity(intent);
+            }
+        });
     }
 
     //获取数据源总的条数

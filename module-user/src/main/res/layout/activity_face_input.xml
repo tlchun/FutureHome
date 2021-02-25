@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:itemview="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     tools:ignore="ResourceName">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.goldze.user.ui.viewmodel.UserDetailViewModel" />
@@ -30,23 +31,20 @@
                 android:id="@+id/iv_face"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginTop="20dp"
                 android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
                 fresco:actualImageScaleType="focusCrop"
                 fresco:placeholderImage="@mipmap/head_img"
                 fresco:placeholderImageScaleType="fitCenter"
                 fresco:roundAsCircle="true" />
-
         </RelativeLayout>
 
-        <com.goldze.base.widget.ItemView
-            android:id="@+id/itemview_user_phone"
+        <EditText
+            android:id="@+id/et_userid"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
             android:background="@drawable/item_selector"
-            android:clickable="true"
-            android:text="手机号码"
-            itemview:item_right_img_res="@mipmap/arrow_right" />
+            android:hint="请输入用户ID" />
 
         <TextView
             android:id="@+id/tv_save"

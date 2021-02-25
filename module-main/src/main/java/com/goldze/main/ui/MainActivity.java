@@ -43,12 +43,12 @@ import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 @Route(path = RouterActivityPath.Main.PAGER_MAIN)
 public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> implements IGetMessageCallBack {
     private List<Fragment> mFragments;
+    private Fragment currentFragment;
 
     private MyServiceConnection serviceConnection;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
-
         return R.layout.activity_main;
     }
 
@@ -88,8 +88,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         if (homeFragment != null) {
             //默认选中第一个
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.frameLayout, homeFragment);
-            transaction.commitAllowingStateLoss();
+            currentFragment = homeFragment;
+            transaction.add(R.id.frameLayout, homeFragment).show(homeFragment).commit();
         }
     }
 
@@ -105,12 +105,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         navigationController.addTabItemSelectedListener(new OnTabItemSelectedListener() {
             @Override
             public void onSelected(int index, int old) {
-                Fragment currentFragment = mFragments.get(index);
-                if (currentFragment != null) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frameLayout, currentFragment);
-                    transaction.commitAllowingStateLoss();
-                }
+//                Fragment currentFragment = mFragments.get(index);
+//                if (currentFragment != null) {
+//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                    transaction.replace(R.id.frameLayout, currentFragment);
+//                    transaction.commitAllowingStateLoss();
+//                }
+                showFragment(mFragments.get(index));
                 MQTTService.publish("测试一下子");
             }
 
@@ -119,6 +120,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
 
             }
         });
+    }
+
+    /**
+     * 展示Fragment
+     */
+    private void showFragment(Fragment fragment) {
+        if (currentFragment != fragment) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.hide(currentFragment);
+            currentFragment = fragment;
+            if (!fragment.isAdded()) {
+                transaction.add(R.id.frameLayout, fragment).show(fragment).commit();
+            } else {
+                transaction.show(fragment).commit();
+            }
+        }
     }
 
     private void fullScreen(Activity activity) {

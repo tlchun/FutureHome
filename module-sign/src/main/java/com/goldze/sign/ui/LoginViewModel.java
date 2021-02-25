@@ -119,6 +119,7 @@ public class LoginViewModel extends BaseViewModel {
                         ToastUtils.showShort("登录成功");
                         //保存用户信息
                         SPUtils.getInstance().put(SPKeyGlobal.USER_INFO, userName.get());
+                        SPUtils.getInstance().put(SPKeyGlobal.USER_ID, response.getAccount().getUserId());
                         SPUtils.getInstance().put(SPKeyGlobal.USER_PIC, response.getAccount().getHeadImgUrl());
                         SPUtils.getInstance().put(SPKeyGlobal.USER_TOKEN, response.getToken());
                         ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();

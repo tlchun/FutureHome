@@ -11,7 +11,7 @@ import com.goldze.user.ui.viewmodel.SettinglViewModel;
 
 import me.goldze.mvvmhabit.base.BaseActivity;
 
-@Route(path = RouterActivityPath.User.PAGER_USERDETAIL)
+@Route(path = RouterActivityPath.User.PAGER_USERDISTURB)
 public class SettingActivity extends BaseActivity<ActivitySettingBinding, SettinglViewModel> {
 
     @Override

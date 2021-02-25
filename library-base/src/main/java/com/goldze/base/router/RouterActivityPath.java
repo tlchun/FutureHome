@@ -32,5 +32,6 @@ public class RouterActivityPath {
         private static final String USER = "/user";
         /*用户详情*/
         public static final String PAGER_USERDETAIL = USER + "/UserDetail";
+        public static final String PAGER_USERDISTURB = USER + "/UserDisturb";
     }
 }

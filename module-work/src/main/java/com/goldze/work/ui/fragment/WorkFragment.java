@@ -70,12 +70,10 @@ public class WorkFragment extends BaseFragment<FragmentWorkBinding, WorkViewMode
 
                     @Override
                     public void onSuccess(List<DeviceModel> response) {
-//                        mList.addAll(response);
-//                        mAdapter.notifyDataSetChanged();
+                        mList.addAll(response);
+                        mAdapter.notifyDataSetChanged();
                     }
                 });
-
-        mList.add("1");
 
         //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
         mLinearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

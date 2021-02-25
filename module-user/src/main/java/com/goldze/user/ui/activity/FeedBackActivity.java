@@ -13,7 +13,7 @@ import com.goldze.user.ui.viewmodel.UserDetailViewModel;
 import me.goldze.mvvmhabit.base.BaseActivity;
 
 
-@Route(path = RouterActivityPath.User.PAGER_USERDETAIL)
+@Route(path = RouterActivityPath.User.PAGER_USERDISTURB)
 public class FeedBackActivity extends BaseActivity<ActivityUserDetailBinding, UserDetailViewModel> {
 
     @Override

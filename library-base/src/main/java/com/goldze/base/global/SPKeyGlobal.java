@@ -6,6 +6,7 @@ package com.goldze.base.global;
  */
 public class SPKeyGlobal {
     public static final String USER_INFO = "user_info";
+    public static final String USER_ID = "user_id";
     public static final String USER_PIC = "user_pic";
     public static final String USER_TOKEN = "user_token";
 }
