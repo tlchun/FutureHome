@@ -34,6 +34,12 @@ public class DeviceControlActivity extends AppCompatActivity {
         deviceMac = getIntent().getStringExtra("deviceMac");
         deviceId = getIntent().getLongExtra("deviceId", 0);
 
+        findViewById(R.id.rl_left).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         findViewById(R.id.tv_face).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +50,22 @@ public class DeviceControlActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DeviceControlActivity.this, CardActivity.class);
+                intent.putExtra("deviceMac", deviceMac);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.tv_face_record).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DeviceControlActivity.this, FaceRecordActivity.class);
+                intent.putExtra("deviceMac", deviceMac);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.tv_card_record).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DeviceControlActivity.this, CardRecordActivity.class);
                 intent.putExtra("deviceMac", deviceMac);
                 startActivity(intent);
             }

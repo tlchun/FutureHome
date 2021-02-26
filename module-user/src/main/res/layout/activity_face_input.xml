@@ -19,6 +19,7 @@
         android:orientation="vertical">
 
         <com.goldze.base.widget.TitleView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -44,13 +45,15 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_height"
             android:background="@drawable/item_selector"
-            android:hint="请输入用户ID" />
+            android:hint="请输入用户ID"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp" />
 
         <TextView
             android:id="@+id/tv_save"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@color/white"
             android:gravity="center"
             android:text="保存"

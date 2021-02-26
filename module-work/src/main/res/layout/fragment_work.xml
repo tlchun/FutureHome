@@ -5,6 +5,7 @@
     tools:ignore="ResourceName">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.goldze.work.ui.viewmodel.WorkViewModel" />
@@ -17,15 +18,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/icon_card_bg"
+        android:background="@color/blue_text_color"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="10dp">
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,7 +33,14 @@
                 android:layout_centerVertical="true"
                 android:text="设备列表"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:background="#888" />
 
         </RelativeLayout>
 

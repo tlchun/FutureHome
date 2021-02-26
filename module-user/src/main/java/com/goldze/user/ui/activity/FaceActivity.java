@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.router.RouterActivityPath;
+import com.goldze.base.widget.TitleView;
 import com.goldze.user.AvatarManager;
 import com.goldze.user.BR;
 import com.goldze.user.R;
@@ -61,6 +62,8 @@ public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDe
 
     @Override
     public void initData() {
+        TitleView titleView = findViewById(R.id.title);
+        titleView.setTitleText("录入人脸");
         iv_face = findViewById(R.id.iv_face);
         iv_face.setOnClickListener(new View.OnClickListener() {
             @Override

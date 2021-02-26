@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.goldze.base.global.SPKeyGlobal;
+import com.goldze.base.widget.TitleView;
 import com.goldze.work.R;
 import com.google.gson.Gson;
 import com.zhouyou.http.EasyHttp;
@@ -29,6 +30,9 @@ public class CardActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_input);
+
+        TitleView titleView = findViewById(R.id.titleView);
+        titleView.setTitleText("录入卡号");
 
         et_userid = findViewById(R.id.et_userid);
         et_card = findViewById(R.id.et_card);

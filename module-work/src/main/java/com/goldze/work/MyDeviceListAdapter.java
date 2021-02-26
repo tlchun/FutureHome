@@ -12,13 +12,13 @@ import com.goldze.work.ui.DeviceControlActivity;
 
 import java.util.List;
 
-public class MyRecycleViewAdapter extends RecyclerView.Adapter<MyRecycleViewAdapter.MyHolder> {
+public class MyDeviceListAdapter extends RecyclerView.Adapter<MyDeviceListAdapter.MyHolder> {
 
     private List<DeviceModel> mList;//数据源
 
     private ViewGroup viewGroup;
 
-    public MyRecycleViewAdapter(List<DeviceModel> list) {
+    public MyDeviceListAdapter(List<DeviceModel> list) {
         mList = list;
     }
 

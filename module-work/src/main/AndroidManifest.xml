@@ -5,5 +5,7 @@
     <application>
         <activity android:name=".ui.DeviceControlActivity" />
         <activity android:name=".ui.CardActivity" />
+        <activity android:name=".ui.FaceRecordActivity" />
+        <activity android:name=".ui.CardRecordActivity" />
     </application>
 </manifest>
