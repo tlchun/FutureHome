@@ -43,6 +43,7 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter<MyRecycleViewAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(viewGroup.getContext(), DeviceControlActivity.class);
+                intent.putExtra("deviceId", mList.get(position).getDeviceId());
                 intent.putExtra("deviceMac", mList.get(position).getDeviceMac());
                 viewGroup.getContext().startActivity(intent);
             }

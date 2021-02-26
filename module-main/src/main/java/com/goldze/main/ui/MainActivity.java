@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -18,7 +16,6 @@ import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.goldze.base.ApiResult;
 import com.goldze.base.IGetMessageCallBack;
 import com.goldze.base.MQTTService;
 import com.goldze.base.MyServiceConnection;
@@ -29,6 +26,7 @@ import com.goldze.main.BR;
 import com.goldze.main.databinding.ActivityMainBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.zhouyou.http.model.ApiResult;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

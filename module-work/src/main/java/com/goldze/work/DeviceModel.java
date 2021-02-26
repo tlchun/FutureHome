@@ -1,7 +1,7 @@
 package com.goldze.work;
 
 public class DeviceModel {
-    private int deviceId;
+    private long deviceId;
     private String deviceMac;
     private String deviceName;
     private int deviceTypeId;
@@ -9,7 +9,7 @@ public class DeviceModel {
     private String username;
     private String showPassword;
 
-    public int getDeviceId() {
+    public long getDeviceId() {
         return deviceId;
     }
 

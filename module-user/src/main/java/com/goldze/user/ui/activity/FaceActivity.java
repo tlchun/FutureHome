@@ -19,11 +19,13 @@ import com.goldze.user.BR;
 import com.goldze.user.R;
 import com.goldze.user.databinding.ActivityUserDetailBinding;
 import com.goldze.user.ui.viewmodel.UserDetailViewModel;
+import com.google.gson.Gson;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yalantis.ucrop.UCrop;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+import com.zhouyou.http.model.ApiResult;
 
 import java.io.File;
 
@@ -131,13 +133,19 @@ public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDe
                     .execute(new SimpleCallBack<String>() {
                         @Override
                         public void onError(ApiException e) {
-                            ToastUtils.showShort("失败");
+                            ToastUtils.showShort(e.getMessage() != null ? e.getMessage() : "保存失败");
                         }
 
                         @Override
                         public void onSuccess(String response) {
-                            ToastUtils.showShort("上传成功");
-                            finish();
+                            Gson gson = new Gson();
+                            ApiResult apiResult = gson.fromJson(response, ApiResult.class);
+                            if (apiResult.getCode() == 0) {
+                                ToastUtils.showShort("保存成功");
+                                finish();
+                            } else {
+                                ToastUtils.showShort(apiResult.getMsg());
+                            }
                         }
                     });
         } else {

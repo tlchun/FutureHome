@@ -4,5 +4,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <application>
         <activity android:name=".ui.DeviceControlActivity" />
+        <activity android:name=".ui.CardActivity" />
     </application>
 </manifest>
