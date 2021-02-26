@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://schemas.android.com/apk/res-auto"
     xmlns:funitemview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ResourceName">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.goldze.msg.ui.viewmodel.MsgViewModel" />
@@ -17,78 +19,81 @@
         android:orientation="vertical">
 
         <ImageView
-            android:background="@mipmap/banner2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@mipmap/banner2" />
 
 
         <com.goldze.base.widget.FunItemView
             android:layout_width="100dp"
-            funitemview:item_text="智慧家居"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            funitemview:item_text="智慧家居" />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:background="@color/white">
 
             <com.goldze.base.widget.FunItemView
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                funitemview:item_text="远程监控"
-                android:layout_height="wrap_content"/>
+                funitemview:item_text="远程监控" />
 
             <com.goldze.base.widget.FunItemView
-                funitemview:item_text="视频通话"
+
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                binding:onClickCommand="@{viewModel.rtcOnClickCommand}"
+                funitemview:item_text="视频通话" />
 
             <com.goldze.base.widget.FunItemView
-                funitemview:item_text="家电控制"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                funitemview:item_text="家电控制" />
 
             <com.goldze.base.widget.FunItemView
-                funitemview:item_text="安全预警"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                funitemview:item_text="安全预警" />
         </LinearLayout>
+
         <LinearLayout
-            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <com.goldze.base.widget.FunItemView
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                funitemview:item_text="门禁"
-                android:layout_height="wrap_content"/>
+                funitemview:item_text="门禁" />
 
             <com.goldze.base.widget.FunItemView
-                funitemview:item_text="紧急求助"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                funitemview:item_text="紧急求助" />
 
             <com.goldze.base.widget.FunItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:visibility="invisible"
-                funitemview:item_text="社区医疗"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                funitemview:item_text="社区医疗" />
 
             <com.goldze.base.widget.FunItemView
-                android:visibility="invisible"
-                funitemview:item_text="社区家政"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                android:visibility="invisible"
+                funitemview:item_text="社区家政" />
         </LinearLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
 </layout>

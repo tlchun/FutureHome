@@ -3,7 +3,6 @@ package com.goldze.base.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -14,6 +13,8 @@ import android.widget.TextView;
 
 import com.goldze.base.R;
 import com.goldze.base.utils.DensityUtils;
+
+import androidx.core.content.ContextCompat;
 
 
 public class TitleView extends RelativeLayout {

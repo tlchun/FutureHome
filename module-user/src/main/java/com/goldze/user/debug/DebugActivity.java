@@ -3,11 +3,11 @@ package com.goldze.user.debug;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 
 import com.goldze.user.ui.fragment.MeFragment;
 
+import androidx.annotation.Nullable;
 import me.goldze.mvvmhabit.base.ContainerActivity;
 
 /**

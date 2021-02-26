@@ -1,10 +1,6 @@
 package com.goldze.user.ui.viewmodel;
 
 import android.app.Application;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -13,6 +9,9 @@ import com.goldze.base.contract._Login;
 import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.router.RouterActivityPath;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.base.BaseViewModel;

@@ -1,7 +1,10 @@
 package com.goldze.base.debug;
 
+import android.content.Context;
+
 import com.goldze.base.config.ModuleLifecycleConfig;
 
+import androidx.multidex.MultiDex;
 import me.goldze.mvvmhabit.base.BaseApplication;
 
 /**
@@ -18,5 +21,11 @@ public class DebugApplication extends BaseApplication {
         //....
         //初始化组件(靠后)
         ModuleLifecycleConfig.getInstance().initModuleLow(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

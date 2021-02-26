@@ -10,6 +10,9 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
         //阿里路由框架配置
         javaCompileOptions {
             annotationProcessorOptions {
@@ -65,5 +68,7 @@ dependencies {
         implementation project(':module-msg')
         //用户模块
         implementation project(':module-user')
+        //视频通话模块
+        implementation project(':module-tencentliteavrtc')
     }
 }

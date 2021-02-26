@@ -1,8 +1,6 @@
 package com.goldze.sign.ui;
 
-import android.arch.lifecycle.Observer;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 
@@ -12,6 +10,8 @@ import com.goldze.sign.BR;
 import com.goldze.sign.R;
 import com.goldze.sign.databinding.ActivityLoginBinding;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import me.goldze.mvvmhabit.base.BaseActivity;
 
 /**

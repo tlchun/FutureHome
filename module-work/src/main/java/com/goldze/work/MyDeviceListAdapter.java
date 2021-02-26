@@ -2,7 +2,6 @@ package com.goldze.work;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 import com.goldze.work.ui.DeviceControlActivity;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MyDeviceListAdapter extends RecyclerView.Adapter<MyDeviceListAdapter.MyHolder> {
 

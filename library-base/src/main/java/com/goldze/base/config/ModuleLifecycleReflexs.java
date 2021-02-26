@@ -20,6 +20,8 @@ public class ModuleLifecycleReflexs {
     private static final String MsgInit = "com.goldze.msg.MsgModuleInit";
     //用户业务模块
     private static final String UserInit = "com.goldze.user.UserModuleInit";
+    //视频通话模块
+    private static final String RTCInit = "com.module.tencentliteavrtc.RTCModuleInit";
 
-    public static String[] initModuleNames = {BaseInit, MainInit,SignInit, HomeInit, WorkInit, MsgInit,UserInit};
+    public static String[] initModuleNames = {BaseInit, MainInit, SignInit, HomeInit, WorkInit, MsgInit, UserInit, RTCInit};
 }

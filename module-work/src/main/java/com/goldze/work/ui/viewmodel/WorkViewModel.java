@@ -1,7 +1,8 @@
 package com.goldze.work.ui.viewmodel;
 
 import android.app.Application;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 import me.goldze.mvvmhabit.base.BaseViewModel;
 
 

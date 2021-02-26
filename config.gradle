@@ -1,22 +1,22 @@
 ext {
     //android开发版本配置
     android = [
-            compileSdkVersion: 27,
-            buildToolsVersion: "27.0.2",
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.2",
             applicationId    : "com.goldze.component",
-            minSdkVersion    : 15,
+            minSdkVersion    : 19,
             targetSdkVersion : 27,
             versionCode      : 1,
             versionName      : "1.0",
     ]
     //version配置
     versions = [
-            "support-version": "27.0.2",
+            "support-version": "28.0.0",
             "junit-version"  : "4.12",
     ]
     //support配置
     support = [
-            "constraint-layout"       : "1.0.0-beta2",
+            "constraint-layout"       : "1.1.3",
             'support-v4'              : "com.android.support:support-v4:${versions["support-version"]}",
             'appcompat-v7'            : "com.android.support:appcompat-v7:${versions["support-version"]}",
             'recyclerview-v7'         : "com.android.support:recyclerview-v7:${versions["support-version"]}",
@@ -33,6 +33,8 @@ ext {
             //阿里路由框架
             "arouter-api"                          : "com.alibaba:arouter-api:1.4.1",
             "arouter-compiler"                     : "com.alibaba:arouter-compiler:1.2.2",
+            "liteavSdk"                            : "com.tencent.liteav:LiteAVSDK_TRTC:latest.release",
+            "imSdk"                                : "com.tencent.imsdk:imsdk:4.9.1",
     ]
 }
 

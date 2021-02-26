@@ -1,7 +1,6 @@
 package com.goldze.user.ui.viewmodel;
 
 import android.app.Application;
-import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.goldze.user.ui.activity.DisturbActivity;
@@ -11,6 +10,7 @@ import com.goldze.user.ui.activity.PersonActivity;
 import com.goldze.user.ui.activity.SettingActivity;
 import com.goldze.user.ui.activity.ShareActivity;
 
+import androidx.annotation.NonNull;
 import me.goldze.mvvmhabit.base.BaseViewModel;
 
 public class SettinglViewModel extends BaseViewModel {

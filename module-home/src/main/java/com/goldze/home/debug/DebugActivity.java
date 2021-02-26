@@ -3,12 +3,12 @@ package com.goldze.home.debug;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.goldze.home.BR;
 import com.goldze.home.R;
 import com.goldze.home.ui.fragment.HomeFragment;
 
+import androidx.annotation.Nullable;
 import me.goldze.mvvmhabit.base.BaseActivity;
 import me.goldze.mvvmhabit.base.ContainerActivity;
 

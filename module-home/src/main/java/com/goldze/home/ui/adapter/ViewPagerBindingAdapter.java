@@ -1,11 +1,11 @@
 package com.goldze.home.ui.adapter;
 
-import android.databinding.ViewDataBinding;
 import android.view.ViewGroup;
 
 import com.goldze.home.databinding.ItemViewpagerBinding;
 import com.goldze.home.ui.viewmodel.ViewPagerItemViewModel;
 
+import androidx.databinding.ViewDataBinding;
 import me.tatarka.bindingcollectionadapter2.BindingViewPagerAdapter;
 
 

@@ -2,7 +2,6 @@ package com.goldze.user.ui.fragment;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +16,7 @@ import com.goldze.user.BR;
 import com.goldze.user.databinding.FragmentMeBinding;
 import com.goldze.user.ui.viewmodel.SettinglViewModel;
 
+import androidx.annotation.Nullable;
 import me.goldze.mvvmhabit.base.BaseFragment;
 import me.goldze.mvvmhabit.utils.SPUtils;
 

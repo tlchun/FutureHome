@@ -3,12 +3,12 @@ package com.goldze.user.ui.viewmodel;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.databinding.ObservableField;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableField;
 import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;

@@ -2,7 +2,6 @@ package com.goldze.work;
 
 import android.annotation.SuppressLint;
 import android.net.Uri;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,8 @@ import com.goldze.work.ui.CardRecordModel;
 import com.goldze.work.ui.FaceRecordModel;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MyCardRecordAdapter extends RecyclerView.Adapter<MyCardRecordAdapter.MyHolder> {
 

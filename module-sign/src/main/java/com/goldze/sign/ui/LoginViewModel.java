@@ -1,10 +1,6 @@
 package com.goldze.sign.ui;
 
 import android.app.Application;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -19,6 +15,9 @@ import com.zhouyou.http.exception.ApiException;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;

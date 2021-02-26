@@ -1,7 +1,6 @@
 package com.goldze.home.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,6 +11,7 @@ import com.goldze.home.R;
 import com.goldze.home.databinding.FragmentHomeBinding;
 import com.goldze.home.ui.viewmodel.HomeViewModel;
 
+import androidx.annotation.Nullable;
 import me.goldze.mvvmhabit.base.BaseFragment;
 
 

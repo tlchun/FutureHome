@@ -1,8 +1,8 @@
 package com.goldze.work.ui.viewmodel;
 
-import android.databinding.ObservableField;
-import android.support.annotation.NonNull;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableField;
 import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.goldze.mvvmhabit.base.ItemViewModel;
 

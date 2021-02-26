@@ -3,10 +3,10 @@ package com.goldze.msg.debug;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.goldze.msg.ui.fragment.MsgFragment;
 
+import androidx.annotation.Nullable;
 import me.goldze.mvvmhabit.base.ContainerActivity;
 
 /**
