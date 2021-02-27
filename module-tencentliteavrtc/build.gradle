@@ -1,0 +1,32 @@
+apply from: "../module.build.gradle"
+android {
+    defaultConfig {
+        //如果是独立模块，则使用当前组件的包名
+        if (isBuildModule.toBoolean()) {
+            applicationId "com.module.tencentliteavrtc"
+        }
+        multiDexEnabled true
+    }
+    //统一资源前缀，规范资源引用
+    resourcePrefix "trtccalling_"
+}
+
+dependencies {
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //组件依赖基础库
+    api project(':library-base')
+    //组件中依赖阿里路由编译框架
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    //公用资源在base中依赖
+//    api project(':library-res')
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //快速集成圆形image view
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    api 'com.squareup.picasso:picasso:2.71828'
+
+    implementation rootProject.ext.dependencies.liteavSdk
+    implementation rootProject.ext.dependencies.imSdk
+}
