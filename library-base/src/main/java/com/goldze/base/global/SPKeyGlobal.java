@@ -9,4 +9,5 @@ public class SPKeyGlobal {
     public static final String USER_ID = "user_id";
     public static final String USER_PIC = "user_pic";
     public static final String USER_TOKEN = "user_token";
+    public static final String USER_MQTT = "user_mqtt";
 }

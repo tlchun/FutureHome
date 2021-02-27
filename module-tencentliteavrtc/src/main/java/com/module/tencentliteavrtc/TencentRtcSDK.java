@@ -1,8 +1,13 @@
 package com.module.tencentliteavrtc;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
+import com.goldze.base.global.SPKeyGlobal;
+import com.goldze.base.router.RouterActivityPath;
 import com.goldze.base.sdk.rtc.IRtcSDK;
 import com.goldze.base.sdk.rtc.TRTCCallingDelegate;
 import com.module.tencentliteavrtc.model.TRTCCalling;
@@ -17,11 +22,38 @@ import com.module.tencentliteavrtc.usr.UserModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.goldze.mvvmhabit.utils.KLog;
+import me.goldze.mvvmhabit.utils.SPUtils;
+
 public class TencentRtcSDK implements IRtcSDK {
 
     private TRTCCalling mTRTCCalling;
     private TRTCCallingDelegate mRTCCallingDelegate;
 
+
+    @Override
+    public void init() {
+        //检查登录状态
+        String mqttId = SPUtils.getInstance().getString(SPKeyGlobal.USER_MQTT);
+        if (!TextUtils.isEmpty(mqttId)) {
+            login(mqttId);
+            KLog.e("腾讯视频通话SKD 登录成功! userId：", mqttId);
+        }
+    }
+
+    @Override
+    public boolean login(String account) {
+        ProfileManager.getInstance().login(account, "", new ProfileManager.ActionCallback() {
+            @Override
+            public void onSuccess() {
+            }
+
+            @Override
+            public void onFailed(int code, String msg) {
+            }
+        });
+        return true;
+    }
 
     @Override
     public void startCallSomeone(final Context context, final String account, TRTCCallingDelegate tRTCCallingDelegate) {
@@ -63,7 +95,7 @@ public class TencentRtcSDK implements IRtcSDK {
     }
 
     @Override
-    public void someoneCall(Context context,String sponsor) {
+    public void someoneCall(Context context, String sponsor) {
 
         TRTCVideoCallActivity.UserInfo selfInfo = new TRTCVideoCallActivity.UserInfo();
         selfInfo.userId = ProfileManager.getInstance().getUserModel().userId;
@@ -91,5 +123,22 @@ public class TencentRtcSDK implements IRtcSDK {
         if (mTRTCCalling != null) {
             mTRTCCalling.removeDelegate(mRTCCallingDelegate);
         }
+    }
+
+    @Override
+    public void logout(Context context) {
+        //退出登录
+        mTRTCCalling = TRTCCallingImpl.sharedInstance(context);
+        mTRTCCalling.logout(new TRTCCalling.ActionCallBack() {
+            @Override
+            public void onError(int code, String msg) {
+
+            }
+
+            @Override
+            public void onSuccess() {
+
+            }
+        });
     }
 }

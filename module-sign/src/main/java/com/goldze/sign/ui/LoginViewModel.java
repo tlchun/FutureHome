@@ -7,7 +7,9 @@ import android.view.View;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.goldze.base.contract._Login;
 import com.goldze.base.global.SPKeyGlobal;
+import com.goldze.base.lib.sdk.HService;
 import com.goldze.base.router.RouterActivityPath;
+import com.goldze.base.sdk.rtc.IRtcSDK;
 import com.goldze.sign.model.LoginModel;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;
@@ -27,6 +29,7 @@ import me.goldze.mvvmhabit.binding.command.BindingCommand;
 import me.goldze.mvvmhabit.binding.command.BindingConsumer;
 import me.goldze.mvvmhabit.bus.RxBus;
 import me.goldze.mvvmhabit.bus.event.SingleLiveEvent;
+import me.goldze.mvvmhabit.utils.KLog;
 import me.goldze.mvvmhabit.utils.RxUtils;
 import me.goldze.mvvmhabit.utils.SPUtils;
 import me.goldze.mvvmhabit.utils.ToastUtils;
@@ -121,10 +124,17 @@ public class LoginViewModel extends BaseViewModel {
                         SPUtils.getInstance().put(SPKeyGlobal.USER_ID, response.getAccount().getUserId());
                         SPUtils.getInstance().put(SPKeyGlobal.USER_PIC, response.getAccount().getHeadImgUrl());
                         SPUtils.getInstance().put(SPKeyGlobal.USER_TOKEN, response.getToken());
+                        SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT, response.getMqtt().getId());
                         ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
                         _Login _login = new _Login();
                         //采用ARouter+RxBus实现组件间通信
                         RxBus.getDefault().post(_login);
+                        //视频通话
+                        IRtcSDK iRtcSDK = HService.getService(IRtcSDK.class);
+                        if (iRtcSDK != null && response.getMqtt() != null) {
+                            iRtcSDK.login(String.valueOf(response.getMqtt().getId()));
+                            KLog.e("腾讯视频通话 登录成功! userId：", response.getMqtt().getId());
+                        }
                         //关闭页面
                         finish();
                     }

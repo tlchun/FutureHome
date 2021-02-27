@@ -39,12 +39,12 @@ public class SplashActivity extends Activity {
 
     public void initData() {
         String userInfo = SPUtils.getInstance().getString(SPKeyGlobal.USER_INFO);
-//        if (!TextUtils.isEmpty(userInfo)) {
+        if (!TextUtils.isEmpty(userInfo)) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-//        } else {
-//            ARouter.getInstance().build(RouterActivityPath.Sign.PAGER_LOGIN).navigation();
-//            finish();
-//        }
+        } else {
+            ARouter.getInstance().build(RouterActivityPath.Sign.PAGER_LOGIN).navigation();
+            finish();
+        }
     }
 }

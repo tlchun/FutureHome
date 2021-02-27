@@ -5,6 +5,7 @@ import android.app.Application;
 import com.blankj.utilcode.util.ToastUtils;
 import com.goldze.base.base.IModuleInit;
 import com.goldze.base.lib.sdk.HService;
+import com.goldze.base.sdk.rtc.IRtcSDK;
 import com.module.tencentliteavrtc.model.TRTCCalling;
 import com.module.tencentliteavrtc.model.impl.TRTCCallingImpl;
 import com.module.tencentliteavrtc.ui.TRTCCallingEntranceActivity;
@@ -27,15 +28,6 @@ public class RTCModuleInit implements IModuleInit {
     @Override
     public boolean onInitAhead(Application application) {
         KLog.e("视频通话模块初始化 -- onInitAhead");
-        ProfileManager.getInstance().login("tlc", "", new ProfileManager.ActionCallback() {
-            @Override
-            public void onSuccess() {
-            }
-
-            @Override
-            public void onFailed(int code, String msg) {
-            }
-        });
         HService.registerService(TencentRtcSDK.class);
         return false;
     }
@@ -43,6 +35,11 @@ public class RTCModuleInit implements IModuleInit {
     @Override
     public boolean onInitLow(Application application) {
         KLog.e("视频通话模块初始化 -- onInitLow");
+        IRtcSDK iRtcSDK = HService.getService(IRtcSDK.class);
+        if (iRtcSDK != null) {
+            iRtcSDK.init();
+        }
+
         return false;
     }
 }

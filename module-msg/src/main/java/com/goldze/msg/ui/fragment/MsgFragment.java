@@ -48,7 +48,6 @@ public class MsgFragment extends BaseFragment<FragmentMsgBinding, MsgViewModel> 
             PermissionUtils.permission(PermissionConstants.STORAGE, PermissionConstants.MICROPHONE, PermissionConstants.CAMERA)
                     .request();
         }
-
         iRtcSDK = HService.getService(IRtcSDK.class);
         viewModel.uc.pDataEvent.observe(this, new Observer<String>() {
             @Override
