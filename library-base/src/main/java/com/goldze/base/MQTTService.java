@@ -34,7 +34,7 @@ public class MQTTService extends Service {
     private static String clientId = SPUtils.getInstance().getString(SPKeyGlobal.USER_MQTT_USERNAME, "device_1");
     private static String userName = SPUtils.getInstance().getString(SPKeyGlobal.USER_MQTT_USERNAME, "device_1");
     private static String passWord = SPUtils.getInstance().getString(SPKeyGlobal.USER_MQTT_PWD, "public");
-    private static String myTopic = "/device/" + clientId;//要订阅的主题
+    private static String myTopic = "/device/up/" + clientId;//要订阅的主题
     private IGetMessageCallBack IGetMessageCallBack;
 
     private IMqttStateCallback iMqttStateCallback;

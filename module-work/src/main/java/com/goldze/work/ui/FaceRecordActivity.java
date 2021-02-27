@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.goldze.base.global.SPKeyGlobal;
+import com.goldze.base.widget.TitleView;
 import com.goldze.work.MyFaceRecordAdapter;
 import com.goldze.work.R;
 import com.zhouyou.http.EasyHttp;
@@ -40,6 +41,9 @@ public class FaceRecordActivity extends AppCompatActivity {
     }
 
     public void initData() {
+
+        TitleView titleView = findViewById(R.id.title);
+        titleView.setTitleText("人脸记录");
 
         findViewById(R.id.rl_left).setOnClickListener(new View.OnClickListener() {
             @Override

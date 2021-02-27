@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.goldze.base.global.SPKeyGlobal;
+import com.goldze.base.widget.TitleView;
 import com.goldze.work.MyCardRecordAdapter;
 import com.goldze.work.R;
 import com.zhouyou.http.EasyHttp;
@@ -41,6 +42,9 @@ public class CardRecordActivity extends AppCompatActivity {
     }
 
     public void initData() {
+
+        TitleView titleView = findViewById(R.id.title);
+        titleView.setTitleText("卡号记录");
 
         findViewById(R.id.rl_left).setOnClickListener(new View.OnClickListener() {
             @Override

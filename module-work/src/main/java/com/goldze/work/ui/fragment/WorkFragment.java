@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.router.RouterFragmentPath;
+import com.goldze.base.widget.TitleView;
 import com.goldze.work.DeviceModel;
 import com.goldze.work.MyDeviceListAdapter;
 import com.goldze.work.R;

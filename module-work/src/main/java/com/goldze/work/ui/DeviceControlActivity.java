@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.router.RouterActivityPath;
+import com.goldze.base.widget.TitleView;
 import com.goldze.work.R;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;
@@ -30,6 +31,9 @@ public class DeviceControlActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grid_work);
+
+        TitleView titleView = findViewById(R.id.title);
+        titleView.setTitleText("设备详情");
 
         deviceMac = getIntent().getStringExtra("deviceMac");
         deviceId = getIntent().getLongExtra("deviceId", 0);

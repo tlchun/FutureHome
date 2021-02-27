@@ -17,7 +17,7 @@
             android:layout_marginLeft="15dp"
             android:gravity="center_vertical"
             android:text="数据"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="17dp" />
 
         <TextView
@@ -28,12 +28,12 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="数据"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="17dp" />
 
         <TextView
             android:id="@+id/tv_time"
-            android:textColor="#DDD"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp" />
@@ -45,6 +45,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
-        android:background="@color/white" />
+        android:background="@color/black" />
 
 </LinearLayout>
