@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yalantis.ucrop.UCrop;
 import com.zhouyou.http.EasyHttp;
+import com.zhouyou.http.body.ProgressResponseCallBack;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.model.ApiResult;
@@ -42,6 +43,8 @@ public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDe
 
     SimpleDraweeView iv_face;
     EditText etUseId;
+
+    private String fileUrl;
 
     @Override
     public void initParam() {
@@ -122,16 +125,40 @@ public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDe
         String path = AvatarManager.getInstance().getZoomImageSaveName();
         File file = new File(path);
         iv_face.setImageURI(Uri.parse("file://" + file));
+        uploadFile(file);
+    }
+
+    private void uploadFile(File file) {
+        EasyHttp.post("/app/device/file/upload")
+                .headers("token", SPUtils.getInstance().getString(SPKeyGlobal.USER_TOKEN))
+                .params("filedata", file, new ProgressResponseCallBack() {
+                    @Override
+                    public void onResponseProgress(long bytesWritten, long contentLength, boolean done) {
+                    }
+                })
+                .timeStamp(true)
+                .execute(new SimpleCallBack<String>() {
+                    @Override
+                    public void onError(ApiException e) {
+                        ToastUtils.showShort(e.getMessage() != null ? e.getMessage() : "上传失败");
+                    }
+
+                    @Override
+                    public void onSuccess(String response) {
+                        fileUrl = response;
+                        ToastUtils.showShort("图像上传成功");
+                    }
+                });
     }
 
     private void faceInput() {
         if (!TextUtils.isEmpty(etUseId.getText().toString().trim())) {
-            String url = "http://skintest.hetyj.com/10120/95665446f4554ce48c613ee791e465ba.png";
+//            String url = "http://skintest.hetyj.com/10120/95665446f4554ce48c613ee791e465ba.png";
             EasyHttp.get("/app/device/acs/faceInput")
                     .headers("token", SPUtils.getInstance().getString(SPKeyGlobal.USER_TOKEN))
                     .params("userId", etUseId.getText().toString().trim())
                     .params("deviceMac", deviceMac)
-                    .params("faceImg", url)
+                    .params("faceImg", fileUrl)
                     .timeStamp(true)
                     .execute(new SimpleCallBack<String>() {
                         @Override

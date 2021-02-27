@@ -5,7 +5,6 @@ import android.view.View;
 
 import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.work.MyCardRecordAdapter;
-import com.goldze.work.MyFaceRecordAdapter;
 import com.goldze.work.R;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;
@@ -18,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import me.goldze.mvvmhabit.utils.SPUtils;
 import me.goldze.mvvmhabit.utils.ToastUtils;
 
