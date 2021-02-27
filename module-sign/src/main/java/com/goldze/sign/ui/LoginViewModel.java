@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.goldze.base.MQTTService;
 import com.goldze.base.contract._Login;
 import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.lib.sdk.HService;
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -125,6 +127,13 @@ public class LoginViewModel extends BaseViewModel {
                         SPUtils.getInstance().put(SPKeyGlobal.USER_PIC, response.getAccount().getHeadImgUrl());
                         SPUtils.getInstance().put(SPKeyGlobal.USER_TOKEN, response.getToken());
                         SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT, String.valueOf(response.getMqtt().getId()));
+                        SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT_USERNAME, String.valueOf(response.getMqtt().getUsername()));
+                        SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT_PWD, String.valueOf(response.getMqtt().getShowPassword()));
+
+                        MQTTService.setId(response.getMqtt().getId() + "");
+                        MQTTService.setUserName(response.getMqtt().getUsername());
+                        MQTTService.setPassWord(response.getMqtt().getPassword());
+
                         ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
                         _Login _login = new _Login();
                         //采用ARouter+RxBus实现组件间通信

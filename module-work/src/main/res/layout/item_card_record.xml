@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="数据"
             android:textColor="@color/white"
             android:textSize="17dp" />
@@ -25,13 +25,15 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
             android:text="数据"
             android:textColor="@color/white"
             android:textSize="17dp" />
 
         <TextView
             android:id="@+id/tv_time"
+            android:textColor="#DDD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp" />

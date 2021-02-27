@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +19,8 @@ import com.blankj.utilcode.util.PermissionUtils;
 import com.goldze.base.IGetMessageCallBack;
 import com.goldze.base.MQTTService;
 import com.goldze.base.MyServiceConnection;
+import com.goldze.base.contract._Login;
+import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.lib.sdk.HService;
 import com.goldze.base.router.RouterActivityPath;
 import com.goldze.base.router.RouterFragmentPath;
@@ -38,8 +41,14 @@ import java.util.Map;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.base.BaseActivity;
 import me.goldze.mvvmhabit.base.BaseViewModel;
+import me.goldze.mvvmhabit.bus.RxBus;
+import me.goldze.mvvmhabit.bus.RxSubscriptions;
+import me.goldze.mvvmhabit.utils.SPUtils;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 
@@ -51,6 +60,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     private IRtcSDK iRtcSDK;
 
     private MyServiceConnection serviceConnection;
+
+    private Disposable subscribe;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -70,12 +81,31 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         //初始化底部Button
         initBottomTab();
 
+        subscribe = RxBus.getDefault().toObservable(_Login.class)
+                .subscribe(new Consumer<_Login>() {
+                    @Override
+                    public void accept(_Login l) throws Exception {
+                        //登录成功后绑定mqtt
+                        bindMqtt();
+                        //解除注册
+                        RxSubscriptions.remove(subscribe);
+                    }
+                });
+        RxSubscriptions.add(subscribe);
+
+        String userInfo = SPUtils.getInstance().getString(SPKeyGlobal.USER_INFO);
+        if (!TextUtils.isEmpty(userInfo)) {
+            bindMqtt();
+        }
+
+        initRtc();
+    }
+
+    private void bindMqtt() {
         serviceConnection = new MyServiceConnection();
         serviceConnection.setIGetMessageCallBack(MainActivity.this);
         Intent intent = new Intent(this, MQTTService.class);
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-
-        initRtc();
     }
 
     /**
@@ -125,12 +155,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         navigationController.addTabItemSelectedListener(new OnTabItemSelectedListener() {
             @Override
             public void onSelected(int index, int old) {
-//                Fragment currentFragment = mFragments.get(index);
-//                if (currentFragment != null) {
-//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                    transaction.replace(R.id.frameLayout, currentFragment);
-//                    transaction.commitAllowingStateLoss();
-//                }
                 showFragment(mFragments.get(index));
                 MQTTService.publish("测试一下子");
             }

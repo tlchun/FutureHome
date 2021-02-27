@@ -27,9 +27,10 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
             android:text="数据"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="17dp" />
 
         <ImageView

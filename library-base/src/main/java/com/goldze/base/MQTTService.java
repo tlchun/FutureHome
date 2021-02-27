@@ -11,6 +11,8 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.util.Log;
 
+import com.goldze.base.global.SPKeyGlobal;
+
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -20,6 +22,8 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+import me.goldze.mvvmhabit.utils.SPUtils;
+
 public class MQTTService extends Service {
     public static final String TAG = MQTTService.class.getSimpleName();
 
@@ -27,9 +31,9 @@ public class MQTTService extends Service {
     private MqttConnectOptions conOpt;
 
     private String host = "tcp://8.134.9.85:1883";
-    private String userName = "device_1";
-    private String passWord = "public";
-    private static String clientId = "device_1";//客户端标识
+    private static String clientId = SPUtils.getInstance().getString(SPKeyGlobal.USER_MQTT_USERNAME, "device_1");
+    private static String userName = SPUtils.getInstance().getString(SPKeyGlobal.USER_MQTT_USERNAME, "device_1");
+    private static String passWord = SPUtils.getInstance().getString(SPKeyGlobal.USER_MQTT_PWD, "public");
     private static String myTopic = "/device/" + clientId;//要订阅的主题
     private IGetMessageCallBack IGetMessageCallBack;
 
@@ -42,6 +46,18 @@ public class MQTTService extends Service {
     private static final Integer MILLIS_IN_ONE_SECOND = 1000 * 5;
     //是否连接
     public volatile boolean isConnectFlag = false;
+
+    public static void setUserName(String name) {
+        userName = name;
+    }
+
+    public static void setPassWord(String pwd) {
+        passWord = pwd;
+    }
+
+    public static void setId(String id) {
+        clientId = id;
+    }
 
     @Override
     public void onCreate() {
@@ -194,7 +210,7 @@ public class MQTTService extends Service {
      *
      * @return
      */
-    public boolean isConnectFlag() {
+    public static boolean isConnectFlag() {
         if (client != null && client.isConnected()) {
             return true;
         } else {

@@ -62,6 +62,7 @@ public class TencentRtcSDK implements IRtcSDK {
         mTRTCCalling = TRTCCallingImpl.sharedInstance(context);
         mTRTCCalling.addDelegate(tRTCCallingDelegate);
         int appid = GenerateTestUserSig.SDKAPPID;
+        if (ProfileManager.getInstance().getUserModel() == null) return;
         String userId = ProfileManager.getInstance().getUserModel().userId;
         String userSig = ProfileManager.getInstance().getUserModel().userSig;
         mTRTCCalling.login(appid, userId, userSig, new TRTCCalling.ActionCallBack() {
@@ -78,7 +79,7 @@ public class TencentRtcSDK implements IRtcSDK {
     }
 
     @Override
-    public void startCallSomeone(Context context,String account) {
+    public void startCallSomeone(Context context, String account) {
         final UserModel mSelfModel = ProfileManager.getInstance().getUserModel();
         if (mSelfModel.userId.equals(account)) {
             ToastUtils.showShort("不能呼叫自己");
