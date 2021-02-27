@@ -37,8 +37,9 @@ dependencies {
     api 'androidx.multidex:multidex:2.0.1'
     //公用资源在base中依赖
     api project(':library-res')
+    api project(':mvvmhabit')
     //核心基础库(由于这是例子, 所以这里采用远程依赖的方式, 可根据实际情况自行换成源码依赖，源码地址：https://github.com/goldze/MVVMHabit)
-    api rootProject.ext.dependencies.MVVMHabit
+//    api rootProject.ext.dependencies.MVVMHabit
     //阿里路由框架
     api rootProject.ext.dependencies["arouter-api"]
     compile 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'

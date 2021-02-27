@@ -145,7 +145,11 @@ public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDe
 
                     @Override
                     public void onSuccess(String response) {
-                        fileUrl = response;
+                        Gson gson = new Gson();
+                        ApiResult<String> apiResult = gson.fromJson(response, ApiResult.class);
+                        if (apiResult.getCode() == 0) {
+                            fileUrl = apiResult.getData();
+                        }
                         ToastUtils.showShort("图像上传成功");
                     }
                 });
@@ -153,7 +157,6 @@ public class FaceActivity extends BaseActivity<ActivityUserDetailBinding, UserDe
 
     private void faceInput() {
         if (!TextUtils.isEmpty(etUseId.getText().toString().trim())) {
-//            String url = "http://skintest.hetyj.com/10120/95665446f4554ce48c613ee791e465ba.png";
             EasyHttp.get("/app/device/acs/faceInput")
                     .headers("token", SPUtils.getInstance().getString(SPKeyGlobal.USER_TOKEN))
                     .params("userId", etUseId.getText().toString().trim())
