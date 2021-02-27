@@ -2,11 +2,14 @@ package com.goldze.msg.ui.viewmodel;
 
 import android.app.Application;
 
+import com.goldze.base.global.SPKeyGlobal;
+
 import androidx.annotation.NonNull;
 import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
 import me.goldze.mvvmhabit.bus.event.SingleLiveEvent;
+import me.goldze.mvvmhabit.utils.SPUtils;
 
 /**
  * Created by goldze on 2018/6/21.
@@ -30,7 +33,8 @@ public class MsgViewModel extends BaseViewModel {
     public BindingCommand rtcOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            uc.pDataEvent.setValue("111");
+            String mqttId = SPUtils.getInstance().getString(SPKeyGlobal.USER_MQTT);
+            uc.pDataEvent.setValue(mqttId);
         }
     });
 

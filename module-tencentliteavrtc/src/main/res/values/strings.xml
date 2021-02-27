@@ -26,8 +26,8 @@
     <string name="trtccalling_title_recent_search">"最近搜索"</string>
     <string name="trtccalling_title_search_result">"搜索结果"</string>
     <string name="trtccalling_tips_search">"搜索添加已注册用户\n\t\t\t以发起通话"</string>
-    <string name="trtccalling_self_phone">您的手机号:</string>
-    <string name="trtccalling_call_self_format">您的手机号: %s</string>
+    <string name="trtccalling_self_phone">您的账号:</string>
+    <string name="trtccalling_call_self_format">您的账号: %s</string>
     <string name="trtccalling_video_call">视频通话</string>
     <string name="trtccalling_audio_call">语音通话</string>
     <string name="trtccalling_toast_user_end">%s 结束通话</string>

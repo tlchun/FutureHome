@@ -56,13 +56,8 @@ public class TencentRtcSDK implements IRtcSDK {
     }
 
     @Override
-    public void startCallSomeone(final Context context, final String account, TRTCCallingDelegate tRTCCallingDelegate) {
+    public void prepare(final Context context, TRTCCallingDelegate tRTCCallingDelegate) {
         mRTCCallingDelegate = tRTCCallingDelegate;
-        final UserModel mSelfModel = ProfileManager.getInstance().getUserModel();
-        if (mSelfModel.userId.equals(account)) {
-            ToastUtils.showShort("不能呼叫自己");
-            return;
-        }
         //登录成功
         mTRTCCalling = TRTCCallingImpl.sharedInstance(context);
         mTRTCCalling.addDelegate(tRTCCallingDelegate);
@@ -77,35 +72,60 @@ public class TencentRtcSDK implements IRtcSDK {
 
             @Override
             public void onSuccess() {
-                TRTCVideoCallActivity.UserInfo selfInfo = new TRTCVideoCallActivity.UserInfo();
-                selfInfo.userId = mSelfModel.userId;
-                selfInfo.userAvatar = mSelfModel.userAvatar;
-                selfInfo.userName = "";
-                List<TRTCVideoCallActivity.UserInfo> callUserInfoList = new ArrayList<>();
-                TRTCVideoCallActivity.UserInfo callUserInfo = new TRTCVideoCallActivity.UserInfo();
-                callUserInfo.userId = account;
-                callUserInfo.userAvatar = "";
-                callUserInfo.userName = "";
-                callUserInfoList.add(callUserInfo);
-                ToastUtils.showShort("视频呼叫:" + callUserInfo.userName);
-                TRTCVideoCallActivity.startCallSomeone(context, selfInfo, callUserInfoList);
-
+                ToastUtils.showShort("腾讯IM登录成功");
             }
         });
     }
 
     @Override
-    public void someoneCall(Context context, String sponsor) {
-
+    public void startCallSomeone(Context context,String account) {
+        final UserModel mSelfModel = ProfileManager.getInstance().getUserModel();
+        if (mSelfModel.userId.equals(account)) {
+            ToastUtils.showShort("不能呼叫自己");
+            return;
+        }
         TRTCVideoCallActivity.UserInfo selfInfo = new TRTCVideoCallActivity.UserInfo();
+        selfInfo.userId = mSelfModel.userId;
+        selfInfo.userAvatar = mSelfModel.userAvatar;
+        selfInfo.userName = "";
+        List<TRTCVideoCallActivity.UserInfo> callUserInfoList = new ArrayList<>();
+        TRTCVideoCallActivity.UserInfo callUserInfo = new TRTCVideoCallActivity.UserInfo();
+        callUserInfo.userId = account;
+        callUserInfo.userAvatar = "";
+        callUserInfo.userName = "";
+        callUserInfoList.add(callUserInfo);
+        ToastUtils.showShort("视频呼叫:" + callUserInfo.userName);
+        TRTCVideoCallActivity.startCallSomeone(context, selfInfo, callUserInfoList);
+    }
+
+    @Override
+    public void startSample(Context context) {
+        ARouter.getInstance().build(RouterActivityPath.Rtc.PAGER_RTC).navigation();
+    }
+
+    @Override
+    public void someoneCall(final Context context, String sponsor) {
+
+        final TRTCVideoCallActivity.UserInfo selfInfo = new TRTCVideoCallActivity.UserInfo();
         selfInfo.userId = ProfileManager.getInstance().getUserModel().userId;
         selfInfo.userAvatar = ProfileManager.getInstance().getUserModel().userAvatar;
         selfInfo.userName = ProfileManager.getInstance().getUserModel().userName;
-        TRTCVideoCallActivity.UserInfo callUserInfo = new TRTCVideoCallActivity.UserInfo();
+        final TRTCVideoCallActivity.UserInfo callUserInfo = new TRTCVideoCallActivity.UserInfo();
         callUserInfo.userId = sponsor;
-        callUserInfo.userAvatar = "";
         callUserInfo.userName = sponsor;
-        TRTCVideoCallActivity.startBeingCall(context, selfInfo, callUserInfo, null);
+        ProfileManager.getInstance().getUserInfoByUserId(sponsor, new ProfileManager.GetUserInfoCallback() {
+            @Override
+            public void onSuccess(UserModel model) {
+                callUserInfo.userAvatar = model.userAvatar;
+                TRTCVideoCallActivity.startBeingCall(context, selfInfo, callUserInfo, null);
+            }
+
+            @Override
+            public void onFailed(int code, String msg) {
+            }
+        });
+
+
     }
 
     @Override

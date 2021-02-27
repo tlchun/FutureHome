@@ -37,7 +37,7 @@
         android:supportsRtl="true"
         tools:replace="android:label"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.TRTCCallingEntranceActivity">
+        <activity android:name=".debug.TRTCCallingEntranceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

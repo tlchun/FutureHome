@@ -34,4 +34,12 @@ public class RouterActivityPath {
         public static final String PAGER_USERDETAIL = USER + "/UserDetail";
         public static final String PAGER_USERDISTURB = USER + "/UserDisturb";
     }
+
+
+    public static class Rtc {
+        private static final String RTC = "/rtc";
+        /*用户搜索*/
+        public static final String PAGER_RTC = RTC + "/sample";
+    }
+
 }

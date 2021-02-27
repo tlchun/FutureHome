@@ -13,11 +13,16 @@ import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.goldze.base.IGetMessageCallBack;
 import com.goldze.base.MQTTService;
 import com.goldze.base.MyServiceConnection;
+import com.goldze.base.lib.sdk.HService;
 import com.goldze.base.router.RouterActivityPath;
 import com.goldze.base.router.RouterFragmentPath;
+import com.goldze.base.sdk.rtc.IRtcSDK;
+import com.goldze.base.sdk.rtc.TRTCCallingDelegate;
 import com.goldze.main.R;
 import com.goldze.main.BR;
 import com.goldze.main.databinding.ActivityMainBinding;
@@ -28,6 +33,7 @@ import com.zhouyou.http.model.ApiResult;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -39,9 +45,10 @@ import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 
 
 @Route(path = RouterActivityPath.Main.PAGER_MAIN)
-public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> implements IGetMessageCallBack {
+public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> implements IGetMessageCallBack, TRTCCallingDelegate {
     private List<Fragment> mFragments;
     private Fragment currentFragment;
+    private IRtcSDK iRtcSDK;
 
     private MyServiceConnection serviceConnection;
 
@@ -68,6 +75,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         Intent intent = new Intent(this, MQTTService.class);
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
+        initRtc();
+    }
+
+    /**
+     * 初始化RTC
+     */
+    private void initRtc() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PermissionUtils.permission(PermissionConstants.STORAGE, PermissionConstants.MICROPHONE, PermissionConstants.CAMERA)
+                    .request();
+        }
+        iRtcSDK = HService.getService(IRtcSDK.class);
+        if (iRtcSDK != null) {
+            iRtcSDK.prepare(this, this);
+        }
     }
 
     private void initFragment() {
@@ -176,6 +198,81 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     @Override
     protected void onDestroy() {
         unbindService(serviceConnection);
+        if (iRtcSDK != null) {
+            iRtcSDK.release();
+        }
         super.onDestroy();
+    }
+
+    @Override
+    public void onError(int code, String msg) {
+
+    }
+
+    @Override
+    public void onInvited(String sponsor, List<String> userIdList, boolean isFromGroup, int callType) {
+        if (iRtcSDK != null) {
+            iRtcSDK.someoneCall(this, sponsor);
+        }
+    }
+
+    @Override
+    public void onGroupCallInviteeListUpdate(List<String> userIdList) {
+
+    }
+
+    @Override
+    public void onUserEnter(String userId) {
+
+    }
+
+    @Override
+    public void onUserLeave(String userId) {
+
+    }
+
+    @Override
+    public void onReject(String userId) {
+
+    }
+
+    @Override
+    public void onNoResp(String userId) {
+
+    }
+
+    @Override
+    public void onLineBusy(String userId) {
+
+    }
+
+    @Override
+    public void onCallingCancel() {
+
+    }
+
+    @Override
+    public void onCallingTimeout() {
+
+    }
+
+    @Override
+    public void onCallEnd() {
+
+    }
+
+    @Override
+    public void onUserVideoAvailable(String userId, boolean isVideoAvailable) {
+
+    }
+
+    @Override
+    public void onUserAudioAvailable(String userId, boolean isVideoAvailable) {
+
+    }
+
+    @Override
+    public void onUserVoiceVolume(Map<String, Integer> volumeMap) {
+
     }
 }

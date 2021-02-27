@@ -1,4 +1,4 @@
-package com.module.tencentliteavrtc.ui;
+package com.module.tencentliteavrtc.debug;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -21,8 +21,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.goldze.base.lib.sdk.HService;
 import com.goldze.base.router.RouterActivityPath;
-import com.goldze.base.router.RouterFragmentPath;
+import com.goldze.base.sdk.rtc.IRtcSDK;
 import com.goldze.base.sdk.rtc.TRTCCallingDelegate;
 import com.module.tencentliteavrtc.R;
 import com.module.tencentliteavrtc.model.TRTCCalling;
@@ -45,7 +46,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 /**
  * 联系人选择Activity，可以通过此界面搜索已注册用户，并发起通话；
  */
-@Route(path = RouterActivityPath.Rtc.PAGER_RTC)
 public class TRTCCallingEntranceActivity extends AppCompatActivity {
     private static final String TAG = "SelectContactActivity";
 
@@ -65,42 +65,142 @@ public class TRTCCallingEntranceActivity extends AppCompatActivity {
     private UserModel mSearchModel;  //表示当前搜索的usermodel
     private int mType = TRTCCalling.TYPE_VIDEO_CALL; //表示当前是 videocall/audiocall
 
+    private TRTCCalling mTRTCCalling;
+
+    private TRTCCallingDelegate mTRTCCallingDelegate = new TRTCCallingDelegate() {
+        // <editor-fold  desc="视频监听代码">
+        @Override
+        public void onError(int code, String msg) {
+        }
+
+        @Override
+        public void onInvited(String sponsor, final List<String> userIdList, boolean isFromGroup, final int callType) {
+            //1. 收到邀请，先到服务器查询
+            ProfileManager.getInstance().getUserInfoByUserId(sponsor, new ProfileManager.GetUserInfoCallback() {
+                @Override
+                public void onSuccess(final UserModel model) {
+                    if (callType == TRTCCalling.TYPE_VIDEO_CALL) {
+                        TRTCVideoCallActivity.UserInfo selfInfo = new TRTCVideoCallActivity.UserInfo();
+                        selfInfo.userId = ProfileManager.getInstance().getUserModel().userId;
+                        selfInfo.userAvatar = ProfileManager.getInstance().getUserModel().userAvatar;
+                        selfInfo.userName = ProfileManager.getInstance().getUserModel().userName;
+                        TRTCVideoCallActivity.UserInfo callUserInfo = new TRTCVideoCallActivity.UserInfo();
+                        callUserInfo.userId = model.userId;
+                        callUserInfo.userAvatar = model.userAvatar;
+                        callUserInfo.userName = model.userName;
+                        TRTCVideoCallActivity.startBeingCall(TRTCCallingEntranceActivity.this, selfInfo, callUserInfo, null);
+                    } else if (callType == TRTCCalling.TYPE_AUDIO_CALL) {
+                        TRTCAudioCallActivity.UserInfo selfInfo = new TRTCAudioCallActivity.UserInfo();
+                        selfInfo.userId = ProfileManager.getInstance().getUserModel().userId;
+                        selfInfo.userAvatar = ProfileManager.getInstance().getUserModel().userAvatar;
+                        selfInfo.userName = ProfileManager.getInstance().getUserModel().userName;
+                        TRTCAudioCallActivity.UserInfo callUserInfo = new TRTCAudioCallActivity.UserInfo();
+                        callUserInfo.userId = model.userId;
+                        callUserInfo.userAvatar = model.userAvatar;
+                        callUserInfo.userName = model.userName;
+                        TRTCAudioCallActivity.startBeingCall(TRTCCallingEntranceActivity.this, selfInfo, callUserInfo, null);
+                    }
+                }
+
+                @Override
+                public void onFailed(int code, String msg) {
+
+                }
+            });
+        }
+
+        @Override
+        public void onGroupCallInviteeListUpdate(List<String> userIdList) {
+
+        }
+
+        @Override
+        public void onUserEnter(String userId) {
+
+        }
+
+        @Override
+        public void onUserLeave(String userId) {
+
+        }
+
+        @Override
+        public void onReject(String userId) {
+
+        }
+
+        @Override
+        public void onNoResp(String userId) {
+
+        }
+
+        @Override
+        public void onLineBusy(String userId) {
+
+        }
+
+        @Override
+        public void onCallingCancel() {
+
+        }
+
+        @Override
+        public void onCallingTimeout() {
+
+        }
+
+        @Override
+        public void onCallEnd() {
+
+        }
+
+        @Override
+        public void onUserVideoAvailable(String userId, boolean isVideoAvailable) {
+
+        }
+
+        @Override
+        public void onUserAudioAvailable(String userId, boolean isVideoAvailable) {
+
+        }
+
+        @Override
+        public void onUserVoiceVolume(Map<String, Integer> volumeMap) {
+
+        }
+        // </editor-fold  desc="视频监听代码">
+    };
+
     /**
      * 开始呼叫某人
      */
     private void startCallSomeone() {
-
-        if (mSelfModel.userId.equals(mSearchModel.userId)) {
-            ToastUtils.showShort("不能呼叫自己");
-            return;
-        }
-
         if (mType == TRTCCalling.TYPE_VIDEO_CALL) {
             TRTCVideoCallActivity.UserInfo selfInfo = new TRTCVideoCallActivity.UserInfo();
             selfInfo.userId = mSelfModel.userId;
             selfInfo.userAvatar = mSelfModel.userAvatar;
             selfInfo.userName = mSearchModel.userName;
             List<TRTCVideoCallActivity.UserInfo> callUserInfoList = new ArrayList<>();
-            TRTCVideoCallActivity.UserInfo       callUserInfo     = new TRTCVideoCallActivity.UserInfo();
+            TRTCVideoCallActivity.UserInfo callUserInfo = new TRTCVideoCallActivity.UserInfo();
             callUserInfo.userId = mSearchModel.userId;
             callUserInfo.userAvatar = mSearchModel.userAvatar;
             callUserInfo.userName = mSearchModel.userName;
             callUserInfoList.add(callUserInfo);
             ToastUtils.showShort("视频呼叫:" + callUserInfo.userName);
-            TRTCVideoCallActivity.startCallSomeone(this, selfInfo, callUserInfoList);
+            TRTCVideoCallActivity.startCallSomeone(TRTCCallingEntranceActivity.this, selfInfo, callUserInfoList);
         } else {
             TRTCAudioCallActivity.UserInfo selfInfo = new TRTCAudioCallActivity.UserInfo();
             selfInfo.userId = ProfileManager.getInstance().getUserModel().userId;
             selfInfo.userAvatar = ProfileManager.getInstance().getUserModel().userAvatar;
             selfInfo.userName = ProfileManager.getInstance().getUserModel().userName;
             List<TRTCAudioCallActivity.UserInfo> callUserInfoList = new ArrayList<>();
-            TRTCAudioCallActivity.UserInfo       callUserInfo     = new TRTCAudioCallActivity.UserInfo();
+            TRTCAudioCallActivity.UserInfo callUserInfo = new TRTCAudioCallActivity.UserInfo();
             callUserInfo.userId = mSearchModel.userId;
             callUserInfo.userAvatar = mSearchModel.userAvatar;
             callUserInfo.userName = mSearchModel.userName;
             callUserInfoList.add(callUserInfo);
             ToastUtils.showShort("语音呼叫:" + callUserInfo.userName);
-            TRTCAudioCallActivity.startCallSomeone(this, selfInfo, callUserInfoList);
+            TRTCAudioCallActivity.startCallSomeone(TRTCCallingEntranceActivity.this, selfInfo, callUserInfoList);
         }
     }
 
@@ -108,11 +208,50 @@ public class TRTCCallingEntranceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trtccalling_activity_search_user_entrance);
+
+        ProfileManager.getInstance().login("111", "", new ProfileManager.ActionCallback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailed(int code, String msg) {
+            }
+        });
+
         mSelfModel = ProfileManager.getInstance().getUserModel();
         mType = getIntent().getIntExtra("TYPE", TRTCCalling.TYPE_VIDEO_CALL);
         initView();
         initStatusBar();
         initPermission();
+
+        initData();
+
+
+    }
+
+    private void initData() {
+        mSelfModel = ProfileManager.getInstance().getUserModel();
+        mTvSelfPhone.setText(getString(R.string.trtccalling_call_self_format, mSelfModel != null ? mSelfModel.phone : ""));
+
+        //登录成功
+        mTRTCCalling = TRTCCallingImpl.sharedInstance(TRTCCallingEntranceActivity.this);
+        mTRTCCalling.addDelegate(mTRTCCallingDelegate);
+        int appid = GenerateTestUserSig.SDKAPPID;
+        String userId = ProfileManager.getInstance().getUserModel().userId;
+        String userSig = ProfileManager.getInstance().getUserModel().userSig;
+        mTRTCCalling.login(appid, userId, userSig, new TRTCCalling.ActionCallBack() {
+            @Override
+            public void onError(int code, String msg) {
+                ToastUtils.showShort("腾讯IM登录失败");
+            }
+
+            @Override
+            public void onSuccess() {
+
+            }
+        });
     }
 
     private void initView() {
@@ -199,6 +338,9 @@ public class TRTCCallingEntranceActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (mTRTCCalling != null) {
+            mTRTCCalling.removeDelegate(mTRTCCallingDelegate);
+        }
     }
 
     private void showSearchUserModel(UserModel model) {
