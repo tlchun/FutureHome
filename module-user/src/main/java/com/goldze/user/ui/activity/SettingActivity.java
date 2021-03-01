@@ -5,6 +5,8 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.goldze.base.contract._Login;
+import com.goldze.base.contract._LoginOut;
 import com.goldze.base.router.RouterActivityPath;
 import com.goldze.user.BR;
 import com.goldze.user.R;
@@ -12,6 +14,7 @@ import com.goldze.user.databinding.ActivitySettingBinding;
 import com.goldze.user.ui.viewmodel.SettinglViewModel;
 
 import me.goldze.mvvmhabit.base.BaseActivity;
+import me.goldze.mvvmhabit.bus.RxBus;
 import me.goldze.mvvmhabit.utils.SPUtils;
 import me.goldze.mvvmhabit.utils.ToastUtils;
 
@@ -35,6 +38,9 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, Settin
             public void onClick(View v) {
                 SPUtils.getInstance().clear();
                 ToastUtils.showShort("退出成功");
+                _LoginOut _loginOut = new _LoginOut();
+                //采用ARouter+RxBus实现组件间通信
+                RxBus.getDefault().post(_loginOut);
                 ARouter.getInstance().build(RouterActivityPath.Sign.PAGER_LOGIN).navigation();
                 finish();
             }

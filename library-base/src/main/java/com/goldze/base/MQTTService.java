@@ -85,31 +85,23 @@ public class MQTTService extends Service {
         retryReconnectTime = RECONNECT_TIME;
         // 服务器地址（协议+地址+端口号）
         String uri = host;
-        if (client == null) {
-            client = new MqttAndroidClient(this, uri, clientId);
-            // 设置MQTT监听并且接受消息
-            client.setCallback(mqttCallback);
+        client = new MqttAndroidClient(this, uri, clientId);
+        // 设置MQTT监听并且接受消息
+        client.setCallback(mqttCallback);
 
-            conOpt = new MqttConnectOptions();
-            // 清除缓存
-            conOpt.setCleanSession(true);
-            // 设置超时时间，单位：秒
-            conOpt.setConnectionTimeout(10);
-            // 心跳包发送间隔，单位：秒
-            conOpt.setKeepAliveInterval(20);
-            // 用户名
-            conOpt.setUserName(userName);
-            // 密码
-            conOpt.setPassword(passWord.toCharArray());     //将字符串转换为字符串数组
+        conOpt = new MqttConnectOptions();
+        // 清除缓存
+        conOpt.setCleanSession(true);
+        // 设置超时时间，单位：秒
+        conOpt.setConnectionTimeout(10);
+        // 心跳包发送间隔，单位：秒
+        conOpt.setKeepAliveInterval(20);
+        // 用户名
+        conOpt.setUserName(userName);
+        // 密码
+        conOpt.setPassword(passWord.toCharArray());     //将字符串转换为字符串数组
 
-            doClientConnection();
-        } else {
-            //若mqtt服务不为空，并且未连接，则重新连接
-            boolean isConn = client.isConnected();
-            if (!isConn) {
-                doClientConnection();
-            }
-        }
+        doClientConnection();
     }
 
     @Override

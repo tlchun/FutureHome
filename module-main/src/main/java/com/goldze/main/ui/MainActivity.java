@@ -20,6 +20,7 @@ import com.goldze.base.IGetMessageCallBack;
 import com.goldze.base.MQTTService;
 import com.goldze.base.MyServiceConnection;
 import com.goldze.base.contract._Login;
+import com.goldze.base.contract._LoginOut;
 import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.lib.sdk.HService;
 import com.goldze.base.router.RouterActivityPath;
@@ -62,6 +63,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     private MyServiceConnection serviceConnection;
 
     private Disposable subscribe;
+    private Disposable subscribe2;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -91,7 +93,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
                         RxSubscriptions.remove(subscribe);
                     }
                 });
+        subscribe2 = RxBus.getDefault().toObservable(_LoginOut.class)
+                .subscribe(new Consumer<_LoginOut>() {
+                    @Override
+                    public void accept(_LoginOut l) throws Exception {
+                        //退出登录成功后解除绑定mqtt
+                        unbindMqtt();
+                        //解除注册
+                        RxSubscriptions.remove(subscribe2);
+                    }
+                });
         RxSubscriptions.add(subscribe);
+        RxSubscriptions.add(subscribe2);
 
         String userInfo = SPUtils.getInstance().getString(SPKeyGlobal.USER_INFO);
         if (!TextUtils.isEmpty(userInfo)) {
@@ -106,6 +119,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         serviceConnection.setIGetMessageCallBack(MainActivity.this);
         Intent intent = new Intent(this, MQTTService.class);
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindMqtt() {
+        if (serviceConnection != null) {
+            unbindService(serviceConnection);
+        }
     }
 
     /**
@@ -221,7 +240,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
 
     @Override
     protected void onDestroy() {
-        unbindService(serviceConnection);
+        unbindMqtt();
         if (iRtcSDK != null) {
             iRtcSDK.release();
         }

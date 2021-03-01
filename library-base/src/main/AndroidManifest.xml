@@ -16,5 +16,7 @@
             android:name="com.goldze.base.MQTTService"
             android:enabled="true"
             android:exported="true" />
+
+        <receiver android:name=".NetworkBroadcastReceiver" />
     </application>
 </manifest>
