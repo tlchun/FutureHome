@@ -71,6 +71,7 @@
             itemview:item_right_img_res="@mipmap/arrow_right"/>
 
         <TextView
+            android:id="@+id/tv_loginout"
             android:textColor="@color/appColor"
             android:background="@color/white"
             android:textSize="16dp"
