@@ -13,10 +13,10 @@
         <!-- Mqtt服务 -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service
-            android:name="com.goldze.base.MQTTService"
+            android:name="com.goldze.base.mqtt.MQTTService"
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name=".NetworkBroadcastReceiver" />
+        <receiver android:name=".mqtt.NetworkBroadcastReceiver" />
     </application>
 </manifest>

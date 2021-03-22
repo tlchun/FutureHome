@@ -1,4 +1,4 @@
-package com.goldze.base;
+package com.goldze.base.mqtt;
 
 import android.app.Service;
 import android.content.Context;

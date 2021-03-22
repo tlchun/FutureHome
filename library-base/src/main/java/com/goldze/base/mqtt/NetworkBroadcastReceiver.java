@@ -1,6 +1,5 @@
-package com.goldze.base;
+package com.goldze.base.mqtt;
 
-import android.app.usage.NetworkStats;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

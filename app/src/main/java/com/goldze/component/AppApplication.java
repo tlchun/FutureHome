@@ -11,6 +11,8 @@ import com.zhouyou.http.cache.converter.SerializableDiskConverter;
 import com.zhouyou.http.cache.model.CacheMode;
 
 import androidx.multidex.MultiDex;
+
+import cn.jpush.android.api.JPushInterface;
 import me.goldze.mvvmhabit.base.BaseApplication;
 import me.goldze.mvvmhabit.crash.CaocConfig;
 import me.goldze.mvvmhabit.utils.KLog;
@@ -82,6 +84,9 @@ public class AppApplication extends BaseApplication {
                 .setCacheVersion(1)//缓存版本为1
                 //可以设置https的证书,以下几种方案根据需要自己设置
                 .setCertificates();                                 //方法一：信任所有证书,不安全有风险
+
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     @Override

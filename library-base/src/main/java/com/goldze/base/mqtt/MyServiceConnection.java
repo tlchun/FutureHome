@@ -1,4 +1,4 @@
-package com.goldze.base;
+package com.goldze.base.mqtt;
 
 import android.content.ComponentName;
 import android.content.ServiceConnection;
