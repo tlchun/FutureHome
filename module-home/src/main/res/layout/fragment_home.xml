@@ -18,7 +18,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="160dp"
             android:background="@mipmap/banner1" />
 
         <LinearLayout
@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/host_notice_bg"
                 android:drawableLeft="@mipmap/notice_img"
                 android:drawablePadding="10dp"
@@ -56,8 +56,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_pay"
                     funitemview:item_text="物业缴费" />
 
@@ -68,8 +68,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_park"
                     funitemview:item_text="停车缴费" />
 
@@ -78,8 +78,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_pwd"
                     funitemview:item_text="钥匙分享" />
 
@@ -96,8 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_repair"
                     funitemview:item_text="报修服务" />
 
@@ -108,8 +108,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_complain"
                     funitemview:item_text="投诉建议" />
 
@@ -118,8 +118,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_wuye"
                     funitemview:item_text="联系物业" />
 
@@ -136,8 +136,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_house"
                     funitemview:item_text="我的房屋" />
 
@@ -148,8 +148,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_smart"
                     funitemview:item_text="智能家居" />
 
@@ -158,12 +158,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_park"
                     funitemview:item_text="社区服务" />
-
             </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </layout>
