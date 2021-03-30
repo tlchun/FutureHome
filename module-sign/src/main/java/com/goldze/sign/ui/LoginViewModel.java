@@ -120,13 +120,16 @@ public class LoginViewModel extends BaseViewModel {
                         SPUtils.getInstance().put(SPKeyGlobal.USER_ID, response.getAccount().getUserId());
                         SPUtils.getInstance().put(SPKeyGlobal.USER_PIC, response.getAccount().getHeadImgUrl());
                         SPUtils.getInstance().put(SPKeyGlobal.USER_TOKEN, response.getToken());
-                        SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT, String.valueOf(response.getMqtt().getId()));
-                        SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT_USERNAME, String.valueOf(response.getMqtt().getUsername()));
-                        SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT_PWD, String.valueOf(response.getMqtt().getShowPassword()));
 
-                        MQTTService.setId(response.getMqtt().getId() + "");
-                        MQTTService.setUserName(response.getMqtt().getUsername());
-                        MQTTService.setPassWord(response.getMqtt().getPassword());
+                        if (response.getMqtt() != null) {
+                            SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT, String.valueOf(response.getMqtt().getId()));
+                            SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT_USERNAME, String.valueOf(response.getMqtt().getUsername()));
+                            SPUtils.getInstance().put(SPKeyGlobal.USER_MQTT_PWD, String.valueOf(response.getMqtt().getShowPassword()));
+
+                            MQTTService.setId(response.getMqtt().getId() + "");
+                            MQTTService.setUserName(response.getMqtt().getUsername());
+                            MQTTService.setPassWord(response.getMqtt().getPassword());
+                        }
 
                         ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
                         _Login _login = new _Login();

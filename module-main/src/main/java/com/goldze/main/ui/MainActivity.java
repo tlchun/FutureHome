@@ -30,16 +30,11 @@ import com.goldze.base.sdk.rtc.TRTCCallingDelegate;
 import com.goldze.main.R;
 import com.goldze.main.BR;
 import com.goldze.main.databinding.ActivityMainBinding;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.zhouyou.http.model.ApiResult;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -50,8 +45,6 @@ import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.goldze.mvvmhabit.bus.RxBus;
 import me.goldze.mvvmhabit.bus.RxSubscriptions;
 import me.goldze.mvvmhabit.utils.SPUtils;
-import me.majiajie.pagerbottomtabstrip.NavigationController;
-import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 
 
 @Route(path = RouterActivityPath.Main.PAGER_MAIN)
@@ -145,13 +138,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         //ARouter拿到多Fragment(这里需要通过ARouter获取，不能直接new,因为在组件独立运行时，宿主app是没有依赖其他组件，所以new不到其他组件的Fragment)
         Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation();
         Fragment workFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Work.PAGER_WORK).navigation();
-        Fragment msgFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Msg.PAGER_MSG).navigation();
         Fragment meFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.User.PAGER_ME).navigation();
 
         mFragments = new ArrayList<>();
         mFragments.add(homeFragment);
         mFragments.add(workFragment);
-        mFragments.add(msgFragment);
         mFragments.add(meFragment);
 
         if (homeFragment != null) {
@@ -163,24 +154,34 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     }
 
     private void initBottomTab() {
-        NavigationController navigationController = binding.pagerBottomTab.material()
-                .addItem(R.mipmap.act_host1, "物业", ContextCompat.getColor(this, R.color.blue_text_color))
-                .addItem(R.mipmap.act_tool2, "智能", ContextCompat.getColor(this, R.color.blue_text_color))
-                .addItem(R.mipmap.act_sq2, "社区", ContextCompat.getColor(this, R.color.blue_text_color))
-                .addItem(R.mipmap.act_my1, "我的", ContextCompat.getColor(this, R.color.blue_text_color))
-                .setDefaultColor(ContextCompat.getColor(this, R.color.textColorVice))
-                .build();
-        //底部按钮的点击事件监听
-        navigationController.addTabItemSelectedListener(new OnTabItemSelectedListener() {
+        binding.llHost.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSelected(int index, int old) {
-                showFragment(mFragments.get(index));
-                MQTTService.publish("测试一下子");
+            public void onClick(View v) {
+                binding.ivHost.setImageResource(R.mipmap.act_host2);
+                binding.tvHost.setTextColor(R.color.blue_text_color);
+                binding.ivMy.setImageResource(R.mipmap.act_my1);
+                binding.tvMy.setTextColor(R.color.textColorVice);
+                showFragment(mFragments.get(0));
             }
-
+        });
+        binding.llOpen.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onRepeat(int index) {
-
+            public void onClick(View v) {
+                binding.ivHost.setImageResource(R.mipmap.act_host1);
+                binding.tvHost.setTextColor(R.color.textColorVice);
+                binding.ivMy.setImageResource(R.mipmap.act_my1);
+                binding.tvMy.setTextColor(R.color.textColorVice);
+                showFragment(mFragments.get(1));
+            }
+        });
+        binding.llMy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.ivHost.setImageResource(R.mipmap.act_host1);
+                binding.tvHost.setTextColor(R.color.textColorVice);
+                binding.ivMy.setImageResource(R.mipmap.act_my2);
+                binding.tvMy.setTextColor(R.color.blue_text_color);
+                showFragment(mFragments.get(2));
             }
         });
     }
@@ -229,13 +230,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     @Override
     public void setMessage(String message) {
         Log.d("MQTT msg:", message);
-        message = "{ 	\"code\": 0, 	\"data\": { 		\"key1\": 123, 		\"key2\": \"world\" 	}, 	\"msg\": \"hello\" }";
-        Type type = new TypeToken<ApiResult<DemoModel>>() {
-        }.getType();
-        ApiResult<DemoModel> apiResult = new Gson().fromJson(message, type);
-        DemoModel demoModel = apiResult.getData();
-        Log.d("MQTT msg1:", demoModel.getKey1());
-        Log.d("MQTT msg2:", demoModel.getKey2());
     }
 
     @Override

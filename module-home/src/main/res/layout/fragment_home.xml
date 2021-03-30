@@ -3,98 +3,167 @@
     tools:ignore="ResourceName">
 
     <data>
-        <variable name="viewModel" type="com.goldze.home.ui.viewmodel.HomeViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.goldze.home.ui.viewmodel.HomeViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:itemview="http://schemas.android.com/apk/res-auto"
         xmlns:funitemview="http://schemas.android.com/apk/res-auto"
+        xmlns:itemview="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/layout_background"
         android:orientation="vertical">
 
         <ImageView
-            android:background="@mipmap/banner1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <com.goldze.base.widget.ItemView
-            android:background="@color/white"
-            itemview:item_right_visible="true"
-            itemview:item_left_visible="true"
-            itemview:item_right_text="2021-02-03"
-            itemview:item_left_img_res="@mipmap/notice_img"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
-
-         <LinearLayout
-             android:layout_marginTop="10dp"
-             android:background="@color/white"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content">
-
-             <com.goldze.base.widget.FunItemView
-                 android:layout_width="0dp"
-                 android:layout_weight="1"
-                 funitemview:item_text="门禁"
-                 funitemview:item_img_res="@mipmap/icon_page_door"
-                 android:layout_height="wrap_content"/>
-
-             <com.goldze.base.widget.FunItemView
-                 funitemview:item_text="联系物业"
-                 funitemview:item_img_res="@mipmap/icon_page_wuye"
-                 android:layout_width="0dp"
-                 android:layout_weight="1"
-                 android:layout_height="wrap_content"/>
-
-             <com.goldze.base.widget.FunItemView
-                 funitemview:item_text="钥匙分享"
-                 funitemview:item_img_res="@mipmap/icon_page_pwd"
-                 android:layout_width="0dp"
-                 android:layout_weight="1"
-                 android:layout_height="wrap_content"/>
-
-             <com.goldze.base.widget.FunItemView
-                 funitemview:item_text="房产"
-                 funitemview:item_img_res="@mipmap/icon_page_house"
-                 android:layout_width="0dp"
-                 android:layout_weight="1"
-                 android:layout_height="wrap_content"/>
-         </LinearLayout>
+            android:layout_height="200dp"
+            android:background="@mipmap/banner1" />
 
         <LinearLayout
-            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/host_bottom_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp">
 
-            <com.goldze.base.widget.FunItemView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                funitemview:item_text="缴费"
-                funitemview:item_img_res="@mipmap/icon_page_pay"
-                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/host_notice_bg"
+                android:drawableLeft="@mipmap/notice_img"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="通知公告"
+                android:textSize="15dp" />
 
-            <com.goldze.base.widget.FunItemView
-                funitemview:item_text="维修"
-                funitemview:item_img_res="@mipmap/icon_page_repair"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                android:gravity="center">
 
-            <com.goldze.base.widget.FunItemView
-                funitemview:item_text="停车"
-                funitemview:item_img_res="@mipmap/icon_page_park"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_pay"
+                    funitemview:item_text="物业缴费" />
 
-            <com.goldze.base.widget.FunItemView
-                funitemview:item_text="户户通"
-                funitemview:item_img_res="@mipmap/iv_h2h"
-                android:layout_width="0dp"
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_park"
+                    funitemview:item_text="停车缴费" />
+
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_pwd"
+                    funitemview:item_text="钥匙分享" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                android:gravity="center">
+
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_repair"
+                    funitemview:item_text="报修服务" />
+
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_complain"
+                    funitemview:item_text="投诉建议" />
+
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_wuye"
+                    funitemview:item_text="联系物业" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_house"
+                    funitemview:item_text="我的房屋" />
+
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_smart"
+                    funitemview:item_text="智能家居" />
+
+                <com.goldze.base.widget.FunItemView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/host_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    funitemview:item_img_res="@mipmap/icon_page_park"
+                    funitemview:item_text="社区服务" />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>
