@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="me.goldze.mvvmhabit.base.BaseViewModel" />
+    </data>
+
+    <LinearLayout xmlns:funitemview="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eee"
+        android:orientation="vertical">
+
+        <com.goldze.base.widget.TitleView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center">
+
+            <com.goldze.base.widget.FunItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/host_item"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                funitemview:item_img_res="@mipmap/wuyefei"
+                funitemview:item_text="物业费" />
+
+            <com.goldze.base.widget.FunItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/host_item"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                funitemview:item_img_res="@mipmap/dianfei"
+                funitemview:item_text="电费" />
+
+            <com.goldze.base.widget.FunItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/host_item"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                funitemview:item_img_res="@mipmap/shuifei"
+                funitemview:item_text="水费" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center">
+
+            <com.goldze.base.widget.FunItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/host_item"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                funitemview:item_img_res="@mipmap/meiqifei"
+                funitemview:item_text="煤气费" />
+
+            <com.goldze.base.widget.FunItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/host_item"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                funitemview:item_img_res="@mipmap/shangwangfei"
+                funitemview:item_text="上网费" />
+
+            <com.goldze.base.widget.FunItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

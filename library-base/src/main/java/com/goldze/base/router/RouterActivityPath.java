@@ -13,7 +13,7 @@ public class RouterActivityPath {
     public static class Main {
         private static final String MAIN = "/main";
         /*主业务界面*/
-        public static final String PAGER_MAIN = MAIN +"/Main";
+        public static final String PAGER_MAIN = MAIN + "/Main";
     }
 
     /**
@@ -33,6 +33,19 @@ public class RouterActivityPath {
         /*用户详情*/
         public static final String PAGER_USERDETAIL = USER + "/UserDetail";
         public static final String PAGER_USERDISTURB = USER + "/UserDisturb";
+    }
+
+    /**
+     * 用户组件
+     */
+    public static class Home {
+        private static final String HOME = "/home";
+        //物业服务
+        public static final String PAGER_WUYE = HOME + "/WuYe";
+        //社区服务
+        public static final String PAGER_SHEQU = HOME + "/SheQu";
+        //物业缴费
+        public static final String PAGER_WUYE_PAY = HOME + "/WuYePay";
     }
 
 
