@@ -5,5 +5,6 @@
         <activity android:name=".ui.activity.WuYeActivity"></activity>
         <activity android:name=".ui.activity.SheQuActivity"></activity>
         <activity android:name=".ui.activity.WuYePayActivity"></activity>
+        <activity android:name=".ui.activity.WuYeFeeActivity"></activity>
     </application>
 </manifest>

@@ -16,4 +16,6 @@ dependencies {
     //组件中依赖阿里路由编译框架
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     //单组件依赖的第三方库，这里不能用implementation，否则宿主项目会因为databinding运行时不能找到第三方类报编译错误
+
+    compile 'me.shaohui:bottomdialog:1.1.9'
 }

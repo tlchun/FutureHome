@@ -11,17 +11,23 @@ import com.goldze.base.widget.TitleView;
 import com.goldze.home.BR;
 import com.goldze.home.R;
 import com.goldze.home.databinding.ActivityShequBinding;
+import com.goldze.home.databinding.ActivityWuyePayBinding;
 import com.goldze.home.ui.adapter.SheQuAdapter;
 import com.goldze.home.ui.model.SheQuModel;
 import com.goldze.home.ui.viewmodel.SheQuViewModel;
+import com.goldze.home.ui.viewmodel.WuYeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.goldze.mvvmhabit.base.BaseActivity;
 
+/**
+ * 物业缴费页面
+ */
+
 @Route(path = RouterActivityPath.Home.PAGER_WUYE_PAY)
-public class WuYePayActivity extends BaseActivity<ActivityShequBinding, SheQuViewModel> {
+public class WuYePayActivity extends BaseActivity<ActivityWuyePayBinding, WuYeViewModel> {
 
     @Override
     public int initContentView(Bundle savedInstanceState) {

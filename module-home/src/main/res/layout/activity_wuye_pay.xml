@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="me.goldze.mvvmhabit.base.BaseViewModel" />
+            type="com.goldze.home.ui.viewmodel.WuYeViewModel" />
     </data>
 
     <LinearLayout xmlns:funitemview="http://schemas.android.com/apk/res-auto"
@@ -33,6 +33,7 @@
             <com.goldze.base.widget.FunItemView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="@{viewModel.wuYeFeeOnClick}"
                 android:layout_weight="1"
                 android:background="@drawable/host_item"
                 android:paddingTop="15dp"

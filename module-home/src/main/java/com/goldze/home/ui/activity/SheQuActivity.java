@@ -20,6 +20,9 @@ import java.util.List;
 
 import me.goldze.mvvmhabit.base.BaseActivity;
 
+/**
+ * 社区服务页面
+ */
 @Route(path = RouterActivityPath.Home.PAGER_SHEQU)
 public class SheQuActivity extends BaseActivity<ActivityShequBinding, SheQuViewModel> {
 
