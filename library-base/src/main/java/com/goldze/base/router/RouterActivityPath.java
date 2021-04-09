@@ -46,6 +46,10 @@ public class RouterActivityPath {
         public static final String PAGER_SHEQU = HOME + "/SheQu";
         //物业缴费
         public static final String PAGER_WUYE_PAY = HOME + "/WuYePay";
+
+        public static final String PAGER_DEVICE_LIST = HOME + "/DeviceList";
+
+        public static final String PAGER_KEY_SHARE = HOME + "/KeyShare";
     }
 
 

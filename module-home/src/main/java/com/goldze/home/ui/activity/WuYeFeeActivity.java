@@ -44,7 +44,13 @@ public class WuYeFeeActivity extends BaseActivity<ActivityWuyeFeeBinding, WuYeFe
                         .setViewListener(new BottomDialog.ViewListener() {
                             @Override
                             public void bindView(View v) {
-                                // // You can do any of the necessary the operation with the view
+                                Button btnPay = v.findViewById(R.id.btn_pay);
+                                btnPay.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        System.out.println("hhhh");
+                                    }
+                                });
                             }
                         })
                         .setLayoutRes(R.layout.pay_dialog_layout)

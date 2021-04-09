@@ -88,11 +88,11 @@
                 android:gravity="center">
 
                 <com.goldze.base.widget.FunItemView
-                    android:onClick="@{viewModel.wuYePayOnClick}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
+                    android:onClick="@{viewModel.wuYePayOnClick}"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_pay"
@@ -115,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
+                    android:onClick="@{viewModel.keyShareOnClick}"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_pwd"
@@ -151,11 +152,11 @@
                     funitemview:item_text="投诉建议" />
 
                 <com.goldze.base.widget.FunItemView
-                    android:onClick="@{viewModel.wuYeOnClick}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
+                    android:onClick="@{viewModel.wuYeOnClick}"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_wuye"
@@ -192,11 +193,11 @@
                     funitemview:item_text="智能家居" />
 
                 <com.goldze.base.widget.FunItemView
-                    android:onClick="@{viewModel.sheQuOnClick}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
+                    android:onClick="@{viewModel.sheQuOnClick}"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_shequ"

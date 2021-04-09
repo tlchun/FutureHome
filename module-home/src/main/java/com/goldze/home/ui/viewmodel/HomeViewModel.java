@@ -5,6 +5,8 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import com.goldze.home.ui.activity.DeviceListActivity;
+import com.goldze.home.ui.activity.KeyShareActivity;
 import com.goldze.home.ui.activity.SheQuActivity;
 import com.goldze.home.ui.activity.WuYeActivity;
 import com.goldze.home.ui.activity.WuYePayActivity;
@@ -35,6 +37,13 @@ public class HomeViewModel extends BaseViewModel {
         @Override
         public void onClick(View v) {
             startActivity(WuYePayActivity.class);
+        }
+    };
+
+    public View.OnClickListener keyShareOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(KeyShareActivity.class);
         }
     };
 

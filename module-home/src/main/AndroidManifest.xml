@@ -6,5 +6,7 @@
         <activity android:name=".ui.activity.SheQuActivity"></activity>
         <activity android:name=".ui.activity.WuYePayActivity"></activity>
         <activity android:name=".ui.activity.WuYeFeeActivity"></activity>
+        <activity android:name=".ui.activity.DeviceListActivity"></activity>
+        <activity android:name=".ui.activity.KeyShareActivity"></activity>
     </application>
 </manifest>
