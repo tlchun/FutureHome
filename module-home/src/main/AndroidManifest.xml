@@ -8,5 +8,7 @@
         <activity android:name=".ui.activity.WuYeFeeActivity"></activity>
         <activity android:name=".ui.activity.DeviceListActivity"></activity>
         <activity android:name=".ui.activity.KeyShareActivity"></activity>
+        <activity android:name=".ui.activity.CompSugActivity"></activity>
+        <activity android:name=".ui.activity.CompSugAddActivity"></activity>
     </application>
 </manifest>

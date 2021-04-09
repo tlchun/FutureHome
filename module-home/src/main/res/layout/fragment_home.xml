@@ -146,6 +146,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/host_item"
+                    android:onClick="@{viewModel.CompSugOnClick}"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     funitemview:item_img_res="@mipmap/icon_page_complain"

@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import com.goldze.home.ui.activity.CompSugActivity;
 import com.goldze.home.ui.activity.DeviceListActivity;
 import com.goldze.home.ui.activity.KeyShareActivity;
 import com.goldze.home.ui.activity.SheQuActivity;
@@ -44,6 +45,13 @@ public class HomeViewModel extends BaseViewModel {
         @Override
         public void onClick(View v) {
             startActivity(KeyShareActivity.class);
+        }
+    };
+
+    public View.OnClickListener CompSugOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(CompSugActivity.class);
         }
     };
 

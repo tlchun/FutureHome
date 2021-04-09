@@ -50,6 +50,8 @@ public class RouterActivityPath {
         public static final String PAGER_DEVICE_LIST = HOME + "/DeviceList";
 
         public static final String PAGER_KEY_SHARE = HOME + "/KeyShare";
+
+        public static final String SUGGEST_ADD = HOME + "/suggest_add";
     }
 
 
