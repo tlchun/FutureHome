@@ -28,7 +28,12 @@ public class KeyShareActivity extends BaseActivity {
     private String deviceMac;
     private long deviceId;
 
-    private TextView pw_show;
+    private ImageView ivCode;
+
+    private TextView tv1;
+    private TextView tv2;
+    private TextView tv3;
+    private TextView tv4;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -49,9 +54,14 @@ public class KeyShareActivity extends BaseActivity {
         deviceMac = getIntent().getStringExtra("deviceMac");
         deviceId = getIntent().getLongExtra("deviceId", 0);
 
-        ImageView ivCode = findViewById(R.id.iv_code);
-        Bitmap bitmap = CodeCreator.createQRCode("123456", 400, 400, null);
-        ivCode.setImageBitmap(bitmap);
+        ivCode = findViewById(R.id.iv_code);
+
+        tv1 = findViewById(R.id.tv1);
+        tv2 = findViewById(R.id.tv2);
+        tv3 = findViewById(R.id.tv3);
+        tv4 = findViewById(R.id.tv4);
+
+        getKey();
     }
 
     private void getKey() {
@@ -67,8 +77,14 @@ public class KeyShareActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(CipherModel response) {
-                        pw_show.setVisibility(View.VISIBLE);
-                        pw_show.setText("有效密码：" + response.getCipherValue());
+                        if (response != null && response.getCipherValue() != null && response.getCipherValue().length() == 4) {
+                            Bitmap bitmap = CodeCreator.createQRCode(response.getCipherValue(), 400, 400, null);
+                            ivCode.setImageBitmap(bitmap);
+                            tv1.setText(response.getCipherValue().charAt(0) + "");
+                            tv2.setText(response.getCipherValue().charAt(1) + "");
+                            tv3.setText(response.getCipherValue().charAt(2) + "");
+                            tv4.setText(response.getCipherValue().charAt(3) + "");
+                        }
                     }
                 });
     }

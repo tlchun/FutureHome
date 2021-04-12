@@ -44,7 +44,7 @@ public class HomeViewModel extends BaseViewModel {
     public View.OnClickListener keyShareOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(KeyShareActivity.class);
+            startActivity(DeviceListActivity.class);
         }
     };
 
