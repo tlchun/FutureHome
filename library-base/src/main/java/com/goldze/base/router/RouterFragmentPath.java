@@ -14,6 +14,10 @@ public class RouterFragmentPath {
         private static final String HOME = "/home";
         /*首页*/
         public static final String PAGER_HOME = HOME + "/Home";
+        /*建议*/
+        public static final String SUG = HOME + "/Sug";
+        /*投诉*/
+        public static final String COMPLAIN = HOME + "/Complain";
     }
 
     /**

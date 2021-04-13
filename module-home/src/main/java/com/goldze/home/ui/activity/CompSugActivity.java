@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.goldze.base.global.SPKeyGlobal;
 import com.goldze.base.router.RouterActivityPath;
+import com.goldze.base.router.RouterFragmentPath;
 import com.goldze.base.widget.TitleView;
 import com.goldze.home.BR;
 import com.goldze.home.R;
@@ -32,14 +34,14 @@ import me.goldze.mvvmhabit.utils.ToastUtils;
  */
 public class CompSugActivity extends BaseActivity {
 
-    private RecyclerView rv_device_list;
-    private MyDeviceListAdapter mAdapter;//适配器
-    private LinearLayoutManager mLinearLayoutManager;//布局管理器
-    private List mList = new ArrayList();
+    private List<Fragment> mFragments;
+    private Fragment currentFragment;
+    private Fragment suggestFragment;
+    private Fragment complainFragment;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
-        return R.layout.activity_comp_sugg;
+        return R.layout.activity_comp_sug;
     }
 
     @Override
@@ -69,6 +71,7 @@ public class CompSugActivity extends BaseActivity {
             public void onClick(View v) {
                 view_suggest.setVisibility(View.VISIBLE);
                 view_complain.setVisibility(View.INVISIBLE);
+                showFragment(suggestFragment);
             }
         });
         complain.setOnClickListener(new View.OnClickListener() {
@@ -76,35 +79,45 @@ public class CompSugActivity extends BaseActivity {
             public void onClick(View v) {
                 view_complain.setVisibility(View.VISIBLE);
                 view_suggest.setVisibility(View.INVISIBLE);
+                showFragment(complainFragment);
             }
         });
 
-
-        rv_device_list = binding.getRoot().findViewById(R.id.rv_device_list);
-
-        EasyHttp.get("/app/suggestion/list")
-                .headers("token", SPUtils.getInstance().getString(SPKeyGlobal.USER_TOKEN))
-                .timeStamp(true)
-                .execute(new SimpleCallBack<List<DeviceModel>>() {
-                    @Override
-                    public void onError(ApiException e) {
-                        ToastUtils.showShort("失败");
-                    }
-
-                    @Override
-                    public void onSuccess(List<DeviceModel> response) {
-                        mList.addAll(response);
-                        mAdapter.notifyDataSetChanged();
-                    }
-                });
-
-        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
-        mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        //创建适配器，将数据传递给适配器
-        mAdapter = new MyDeviceListAdapter(mList);
-        //设置布局管理器
-        rv_device_list.setLayoutManager(mLinearLayoutManager);
-        //设置适配器adapter
-        rv_device_list.setAdapter(mAdapter);
+        //初始化Fragment
+        initFragment();
     }
+
+    private void initFragment() {
+        //ARouter拿到多Fragment(这里需要通过ARouter获取，不能直接new,因为在组件独立运行时，宿主app是没有依赖其他组件，所以new不到其他组件的Fragment)
+        suggestFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.SUG).navigation();
+        complainFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.COMPLAIN).navigation();
+
+        mFragments = new ArrayList<>();
+        mFragments.add(suggestFragment);
+        mFragments.add(complainFragment);
+
+        if (suggestFragment != null) {
+            //默认选中第一个
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            currentFragment = suggestFragment;
+            transaction.add(R.id.frameLayout, suggestFragment).show(suggestFragment).commit();
+        }
+    }
+
+    /**
+     * 展示Fragment
+     */
+    private void showFragment(Fragment fragment) {
+        if (currentFragment != fragment) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.hide(currentFragment);
+            currentFragment = fragment;
+            if (!fragment.isAdded()) {
+                transaction.add(R.id.frameLayout, fragment).show(fragment).commit();
+            } else {
+                transaction.show(fragment).commit();
+            }
+        }
+    }
+
 }

@@ -26,19 +26,14 @@ import me.goldze.mvvmhabit.utils.SPUtils;
 import me.goldze.mvvmhabit.utils.ToastUtils;
 
 /**
- * 投诉建议页面
+ * 添加投诉建议页面
  */
 @Route(path = RouterActivityPath.Home.SUGGEST_ADD)
 public class CompSugAddActivity extends BaseActivity {
 
-    private RecyclerView rv_device_list;
-    private MyDeviceListAdapter mAdapter;//适配器
-    private LinearLayoutManager mLinearLayoutManager;//布局管理器
-    private List mList = new ArrayList();
-
     @Override
     public int initContentView(Bundle savedInstanceState) {
-        return R.layout.activity_device_list;
+        return R.layout.activity_add_comp_sug;
     }
 
     @Override
@@ -52,31 +47,5 @@ public class CompSugAddActivity extends BaseActivity {
         TitleView titleView = findViewById(R.id.title);
         titleView.setTitleText("投诉建议");
 
-        rv_device_list = binding.getRoot().findViewById(R.id.rv_device_list);
-
-        EasyHttp.get("/app/suggestion/list")
-                .headers("token", SPUtils.getInstance().getString(SPKeyGlobal.USER_TOKEN))
-                .timeStamp(true)
-                .execute(new SimpleCallBack<List<DeviceModel>>() {
-                    @Override
-                    public void onError(ApiException e) {
-                        ToastUtils.showShort("失败");
-                    }
-
-                    @Override
-                    public void onSuccess(List<DeviceModel> response) {
-                        mList.addAll(response);
-                        mAdapter.notifyDataSetChanged();
-                    }
-                });
-
-        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
-        mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        //创建适配器，将数据传递给适配器
-        mAdapter = new MyDeviceListAdapter(mList);
-        //设置布局管理器
-        rv_device_list.setLayoutManager(mLinearLayoutManager);
-        //设置适配器adapter
-        rv_device_list.setAdapter(mAdapter);
     }
 }
